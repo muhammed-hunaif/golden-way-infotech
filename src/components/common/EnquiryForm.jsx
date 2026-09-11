@@ -14,7 +14,7 @@ const INITIAL_VALUES = {
 };
 
 const FIELD_BASE =
-  'w-full rounded-sm border bg-white px-4 py-3 text-[0.9375rem] text-night transition-colors duration-400 ease-premium placeholder:text-ink-muted/60 focus:border-gold-500 focus:outline-none';
+  'w-full min-w-0 rounded-sm border bg-white px-3.5 py-3 text-base text-night transition-colors duration-400 ease-premium placeholder:text-ink-muted/60 focus:border-gold-500 focus:outline-none sm:px-4 sm:text-[0.9375rem]';
 
 /**
  * Enquiry form — frontend only.
@@ -68,7 +68,7 @@ export default function EnquiryForm() {
           <CircleCheckBig className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
         </span>
 
-        <h3 className="mt-7 font-display text-2xl font-semibold text-night">
+        <h3 className="mt-7 font-display text-2xl font-normal text-night">
           Thank you, {values.name.trim().split(' ')[0]}.
         </h3>
         <p className="mt-4 max-w-md text-[0.9375rem] leading-[1.85] text-ink-soft">
@@ -88,7 +88,7 @@ export default function EnquiryForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-sm border border-black/[0.07] bg-white p-7 shadow-card md:p-9"
+      className="rounded-sm border border-black/[0.07] bg-white p-5 shadow-card sm:p-7 md:p-9"
       aria-label="Enquiry form"
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -124,11 +124,11 @@ export default function EnquiryForm() {
           value={values.company}
           error={errors.company}
           onChange={handleChange}
-          placeholder="Company or organization (optional)"
+          placeholder="Company"
           autoComplete="organization"
         />
 
-        <div>
+        <div className="min-w-0">
           <label
             htmlFor="enquiry-service"
             className="mb-2 block text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-ink-soft"
@@ -145,11 +145,26 @@ export default function EnquiryForm() {
             aria-describedby={errors.service ? 'enquiry-service-error' : undefined}
             className={cn(
               FIELD_BASE,
+              // A <select> sizes itself to its widest option, and a grid child
+              // defaults to `min-width: auto` — so "Partnership & Collaboration"
+              // was setting the column's minimum width and pushing the form past
+              // the viewport on a 320px screen. `min-w-0` (in FIELD_BASE) lets it
+              // shrink; `truncate` ellipses the chosen label instead of letting
+              // it demand the space back.
+              'truncate',
               errors.service ? 'border-red-600/60' : 'border-black/[0.12]',
               !values.service && 'text-ink-muted/70',
             )}
           >
-            <option value="">Select an area of interest</option>
+            {/* `disabled hidden` keeps this as a prompt rather than a choice:
+                it still shows in the closed select while nothing is picked, but
+                it is not listed among the real options and cannot be re-selected
+                once the visitor has chosen. `hidden` removes it from the list in
+                Chrome, Safari and Firefox; `disabled` is the fallback for
+                browsers that ignore `hidden` on an option, greying it out. */}
+            <option value="" disabled hidden>
+              Select a service
+            </option>
             {SERVICE_CATEGORIES.filter((category) => category.id !== 'all').map((category) => (
               <option key={category.id} value={category.label}>
                 {category.label}
@@ -213,7 +228,7 @@ export default function EnquiryForm() {
 /** Single labelled text input with inline validation messaging. */
 function Field({ id, name, label, type = 'text', required, value, error, onChange, ...props }) {
   return (
-    <div>
+    <div className="min-w-0">
       <label
         htmlFor={id}
         className="mb-2 block text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-ink-soft"

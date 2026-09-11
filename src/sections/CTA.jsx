@@ -6,12 +6,7 @@ import Button from '@/components/common/Button';
 /** Closing call to action, immediately above the footer. */
 export default function CTA() {
   return (
-    <Section
-      id="cta"
-      tone="night"
-      ariaLabel="Get in touch"
-      containerClassName="py-20 md:py-24 lg:py-28"
-    >
+    <Section id="cta" tone="night" ariaLabel="Get in touch">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.55]"
         style={{
@@ -24,7 +19,7 @@ export default function CTA() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <p
-          className="flex items-center justify-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-400"
+          className="flex items-center justify-center gap-3 font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-400"
           data-reveal
         >
           <span className="h-px w-8 bg-gold-500" aria-hidden="true" />

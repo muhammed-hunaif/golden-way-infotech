@@ -2,40 +2,57 @@
 
 ## Logo
 
-`logo-golden-way.jpeg` is the official Golden Way Infotech LLC lockup — the gold
-feather emblem, the wordmark, and the strapline "Mobility Solutions For Your
-Business" (395 × 100). It is imported by
-`src/components/common/Logo.jsx`, which is the only file that references it, so
-Vite fingerprints and cache-busts it on build.
+| File                      | Role                                                          |
+| ------------------------- | ------------------------------------------------------------- |
+| `logo-golden-way.jpeg`    | The original artwork as supplied. Kept for reference; unused.  |
+| `logo-golden-way.png`     | **Shipped file.** Same artwork, white background removed.      |
 
-### Why there are two surface treatments
+`src/components/common/Logo.jsx` is the only file that imports the PNG, so Vite
+fingerprints and cache-busts it on build.
 
-The supplied file is a **JPEG**, which cannot carry transparency — it has an
-opaque white background baked in. `Logo.jsx` handles that with two variants:
+### How the transparent version was produced
 
-| Variant           | Used on                                    | Treatment                                                     |
-| ----------------- | ------------------------------------------ | ------------------------------------------------------------- |
-| `variant="dark"`  | Light surfaces (scrolled navbar)           | `mix-blend-multiply` — the white ground drops into the page    |
-| `variant="light"` | Dark surfaces (hero navbar, menu, footer)  | White brand plate with a thin gold rule                        |
+The supplied file is a JPEG, which cannot carry transparency. The PNG was
+derived from it mechanically — **the marks themselves are unaltered**:
 
-### Upgrading to a transparent logo
+1. **Background removal by flood fill** from the image border, rather than a
+   global brightness threshold. A threshold would have punched holes through the
+   light sheen inside the gold letterforms; a flood fill only removes white that
+   is actually connected to the outside.
+2. **Soft edges un-premultiplied from white.** Anti-aliased edge pixels get
+   fractional alpha and their original colour recovered via
+   `C = (C_jpeg − 255(1 − a)) / a`, so the result is pixel-exact when composited
+   back onto white.
+3. **Drop-shadow suppression.** The artwork carries a soft grey drop shadow —
+   invisible on white, but a conspicuous halo anywhere else. Shadow pixels are
+   separable by chroma (neutral grey, chroma < 25, luminance > 120) from the gold
+   marks and the dark strapline, and are faded out.
 
-If a **transparent PNG or SVG** version of the lockup becomes available, the
-site gets simpler and looks better on dark sections:
+### Why every surface the logo sits on is light
 
-1. Drop the file here as `logo-golden-way.svg` (or `.png`).
-2. Update the import at the top of `src/components/common/Logo.jsx`.
-3. In that same file, delete the `onDark` branch that wraps the image in the
-   white plate, and remove `mix-blend-multiply` — both exist only to work
-   around the opaque JPEG background.
+The lockup's strapline — "Mobility Solutions For Your Business" — is **dark
+ink**. On a black ground it disappears, and no amount of background removal
+changes that: the logo was drawn for light surfaces.
 
-Nothing else in the codebase needs to change.
+So the site is built around it. The navbar is a light bar at every scroll
+position, the mobile menu is a light panel, and the footer body is off-white with
+only its legal bar in black. There is no white plate behind the logo and no
+`mix-blend-mode` trick anywhere — the logo simply sits on grounds it suits.
 
-### Favicon
+If a **reversed (knockout) version** for dark backgrounds is ever supplied, those
+surfaces can go dark again; that is a design decision for the brand owner, not
+something to synthesise from this file.
 
-`public/favicon.svg` is a separate compact gold monogram on black, because the
-full lockup is a 4:1 horizontal wordmark and would be illegible at 16 × 16. If a
-square version of the emblem becomes available, replace that file.
+### Regenerating or replacing
+
+The PNG is a committed build artefact — there is no script in `package.json`
+that regenerates it, because it is a one-time derivation. To replace the logo
+outright, drop the new file here and update the single import at the top of
+`src/components/common/Logo.jsx`.
+
+`public/favicon.svg` is a separate compact gold monogram, since the full lockup
+is a 4:1 horizontal wordmark and would be illegible at 16 × 16. If a square
+version of the feather emblem becomes available, replace that file.
 
 ## Images
 

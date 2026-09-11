@@ -40,7 +40,7 @@ export default function Training() {
               instruction tied closely to applied, real-world practice.
             </p>
 
-            <h3 className="mt-8 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-ink-muted">
+            <h3 className="mt-8 font-caps text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-ink-muted">
               Who it is for
             </h3>
             <ul className="mt-4 flex flex-wrap gap-2">
@@ -79,14 +79,14 @@ export default function Training() {
                   />
                 </span>
                 <span
-                  className="font-display text-[0.8125rem] font-semibold text-black/15 transition-colors duration-500 ease-premium group-hover:text-gold-500"
+                  className="font-display text-[0.8125rem] font-normal text-black/15 transition-colors duration-500 ease-premium group-hover:text-gold-500"
                   aria-hidden="true"
                 >
                   {String(index + 1).padStart(2, '0')}
                 </span>
               </div>
 
-              <h3 className="mt-6 font-display text-[1.25rem] font-semibold leading-snug text-night">
+              <h3 className="mt-6 font-display text-[1.25rem] font-normal leading-snug text-night">
                 {pillar.title}
               </h3>
               <p className="mt-3 text-[0.875rem] leading-[1.8] text-ink-soft">

@@ -89,12 +89,12 @@ export default function ServiceModal({ service, onClose }) {
               <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
             </span>
             <div>
-              <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              <p className="font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
                 {category}
               </p>
               <h2
                 id="service-modal-title"
-                className="mt-1.5 font-display text-2xl font-semibold text-night md:text-[1.75rem]"
+                className="mt-1.5 font-display text-2xl font-normal text-night md:text-[1.75rem]"
               >
                 {name}
               </h2>

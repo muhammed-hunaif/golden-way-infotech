@@ -47,13 +47,35 @@ export default {
         cream: '#F8F7F3',
       },
       fontFamily: {
-        sans: ['"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Cormorant Garamond"', 'ui-serif', 'Georgia', 'serif'],
+        // DM Sans is the workhorse: body copy, navigation, buttons, form fields.
+        sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Playfair Display carries the brand voice — headings, and its italic
+        // for the Vision and Mission pull quotes. A high-contrast serif against
+        // the geometric sans body is the whole contrast of the type system.
+        display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+        // Deliberately NOT the display serif: Playfair's thin strokes break up at
+        // label size, so tracked caps labels borrow the sans instead. Kept as a
+        // separate token so the label voice can be changed on its own later.
+        caps: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
+      // Sized for Playfair Display. The serif has a tall x-height and sets
+      // narrower than the geometric sans it replaced, so it carries these sizes
+      // comfortably — but it must not be tracked in tightly: negative letter
+      // spacing collapses the hairline strokes that give it its contrast, so the
+      // values here are near zero where the previous sans wanted -0.025em.
       fontSize: {
-        'display-sm': ['clamp(2rem, 5vw, 2.75rem)', { lineHeight: '1.12', letterSpacing: '-0.02em' }],
-        'display-md': ['clamp(2.5rem, 6vw, 3.75rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
-        'display-lg': ['clamp(2.75rem, 7.5vw, 5rem)', { lineHeight: '1.04', letterSpacing: '-0.025em' }],
+        'display-sm': [
+          'clamp(1.75rem, 3.8vw, 2.25rem)',
+          { lineHeight: '1.22', letterSpacing: '-0.005em' },
+        ],
+        'display-md': [
+          'clamp(2rem, 4.8vw, 3rem)',
+          { lineHeight: '1.16', letterSpacing: '-0.008em' },
+        ],
+        'display-lg': [
+          'clamp(2.5rem, 6.2vw, 3.875rem)',
+          { lineHeight: '1.12', letterSpacing: '-0.012em' },
+        ],
       },
       letterSpacing: {
         overline: '0.24em',

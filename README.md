@@ -28,6 +28,11 @@ npm run dev      # http://localhost:5173
 
 Requires Node 20.19+ (Vite 8).
 
+> **After editing `tailwind.config.js`, restart the dev server.** Tailwind's
+> PostCSS plugin resolves the theme once at startup, so a running server will
+> keep using the old config — a newly added token then fails with
+> `The \`font-x\` class does not exist`. `npm run build` is unaffected.
+
 ---
 
 ## Project structure
@@ -148,9 +153,22 @@ Tokens are defined in `tailwind.config.js` — use the token, not the hex value.
 | `cream`                | `#F8F7F3` | Off-white sections           |
 | `ink`                  | `#222222` | Body text                    |
 
-Typography pairs **Cormorant Garamond** (`font-display`, headings) with
-**Inter** (`font-sans`, body). Gold is used as an accent — rules, icons,
-numbers, single emphasised phrases — never as a large fill.
+### Typography
+
+Three families, each with one job, chosen to sit with the logo:
+
+| Token          | Family             | Used for                                                     |
+| -------------- | ------------------ | ------------------------------------------------------------ |
+| `font-display` | Cormorant Garamond | Headings; its italic carries the Vision and Mission quotes    |
+| `font-caps`    | Cinzel             | Every tracked uppercase label — section eyebrows, categories  |
+| `font-sans`    | Inter              | Body copy, navigation, buttons, form fields                   |
+
+Cinzel mirrors the Roman small caps of the logo strapline, and Cormorant's
+italic echoes its chancery wordmark, so the page and the mark share a voice.
+Inter stays on everything functional, where legibility beats character.
+
+Gold is used as an accent — rules, icons, numbers, single emphasised phrases —
+never as a large fill.
 
 Reusable classes live in the `@layer components` block of
 `src/styles/index.css`: `.section-padding`, `.overline`, `.hairline`,
@@ -204,15 +222,18 @@ When updating content, edit `src/config/site.js` or the relevant file in
 
 ## Branding
 
-The official lockup lives at `src/assets/logo-golden-way.jpeg` and is used in the
+The official lockup is `src/assets/logo-golden-way.png` — the supplied artwork
+with its white JPEG background removed, marks untouched. It appears in the
 navbar, the mobile menu, and the footer. `src/components/common/Logo.jsx` is the
 only file that imports it.
 
-Because the supplied artwork is a JPEG with an opaque white background, the
-component ships two surface treatments: `mix-blend-multiply` on light surfaces so
-the white ground disappears, and a white brand plate with a thin gold rule on
-dark surfaces. If a transparent PNG or SVG version becomes available, both
-work-arounds can be deleted — see `src/assets/README.md`.
+**The lockup's strapline is dark ink, so it needs a light ground.** The site is
+built around that: the navbar is a light bar at every scroll position, the mobile
+menu is a light panel, and the footer body is off-white with only its legal bar
+in black. There is no plate behind the logo and no blend-mode trick anywhere.
 
 `public/favicon.svg` is a separate compact gold monogram, since the full lockup
 is a 4:1 horizontal wordmark and would be illegible at 16 × 16.
+
+See `src/assets/README.md` for how the transparent PNG was derived, and what to
+do if a reversed version for dark backgrounds is ever supplied.

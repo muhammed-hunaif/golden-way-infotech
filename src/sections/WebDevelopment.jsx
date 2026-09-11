@@ -33,14 +33,14 @@ export default function WebDevelopment() {
                   />
                 </span>
                 <span
-                  className="font-display text-[0.8125rem] font-semibold text-white/20 transition-colors duration-500 ease-premium group-hover:text-gold-500"
+                  className="font-display text-[0.8125rem] font-normal text-white/20 transition-colors duration-500 ease-premium group-hover:text-gold-500"
                   aria-hidden="true"
                 >
                   {step.step}
                 </span>
               </div>
 
-              <h3 className="mt-6 font-display text-[1.25rem] font-semibold text-white">
+              <h3 className="mt-6 font-display text-[1.25rem] font-normal text-white">
                 {step.title}
               </h3>
               <p className="mt-3 text-[0.8125rem] leading-[1.8] text-white/55">

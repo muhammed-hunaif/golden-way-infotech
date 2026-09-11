@@ -25,7 +25,10 @@ export const TECHNOLOGY_GROUPS = [
     note: 'Responsive browser interfaces',
     description:
       'AJAX, HTML, XML, CSS, and JavaScript work together to enable asynchronous data exchange, structured content, and responsive browser interfaces that keep interaction smooth for end users.',
-    items: ['AJAX', 'HTML', 'XML', 'CSS', 'JavaScript'],
+    // HTML and CSS share a chip: they are the markup/styling pair, always used
+    // together, and splitting them made this group the only one with five boxes
+    // where the others have two and three.
+    items: ['AJAX', 'HTML, CSS , JavaScript' , 'XML'],
   },
 ];
 
@@ -53,30 +56,39 @@ export const APPLIED_TECHNOLOGIES = [
   'Cyber Security',
 ];
 
-/** Marquee strip content — the full technology footprint, kept short for legibility. */
+/**
+ * Marquee strip content — the full technology footprint, each paired with where
+ * it is actually applied. A name on its own says the company has heard of the
+ * technology; the pairing says what it is used for.
+ *
+ * Every `use` value is taken from a grouping the profile already makes — the
+ * `SERVICE_CATEGORIES` labels in `services.js`, the `note` on a stack group
+ * above, or the MERN stack service. Nothing here assigns a technology to work
+ * the profile does not describe.
+ */
 export const TECH_MARQUEE = [
-  '.NET',
-  'Java',
-  'SQL Server',
-  'Oracle',
-  'MySQL',
-  'AJAX',
-  'HTML',
-  'XML',
-  'CSS',
-  'JavaScript',
-  'React',
-  'Node.js',
-  'MongoDB',
-  'Express.js',
-  'Python',
-  'PHP',
-  'C#',
-  'ASP.NET',
-  'Cloud',
-  'Cyber Security',
-  'AI',
-  'Machine Learning',
-  'Data Science',
-  'Data Analytics',
+  { name: '.NET', use: 'Software & Web' },
+  { name: 'Java', use: 'Software & Web' },
+  { name: 'SQL Server', use: 'Database' },
+  { name: 'Oracle', use: 'Database' },
+  { name: 'MySQL', use: 'Database' },
+  { name: 'AJAX', use: 'Browser Interfaces' },
+  { name: 'HTML', use: 'Browser Interfaces' },
+  { name: 'XML', use: 'Browser Interfaces' },
+  { name: 'CSS', use: 'Browser Interfaces' },
+  { name: 'JavaScript', use: 'Software & Web' },
+  { name: 'React', use: 'MERN Stack' },
+  { name: 'Node.js', use: 'MERN Stack' },
+  { name: 'MongoDB', use: 'MERN Stack' },
+  { name: 'Express.js', use: 'MERN Stack' },
+  { name: 'Python', use: 'Software & Web' },
+  { name: 'PHP', use: 'Software & Web' },
+  { name: 'C#', use: 'Software & Web' },
+  { name: 'ASP.NET', use: 'Software & Web' },
+  { name: 'Cloud', use: 'Cloud & Security' },
+  { name: 'Cyber Security', use: 'Cloud & Security' },
+  { name: 'AI', use: 'AI & Data' },
+  { name: 'Machine Learning', use: 'AI & Data' },
+  { name: 'Data Science', use: 'AI & Data' },
+  { name: 'Data Analytics', use: 'AI & Data' },
 ];

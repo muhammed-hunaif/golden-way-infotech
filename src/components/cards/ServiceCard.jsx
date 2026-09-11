@@ -20,11 +20,11 @@ function ServiceCard({ service, onSelect }) {
           <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden="true" />
         </span>
 
-        <p className="text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
+        <p className="font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
           {category}
         </p>
 
-        <h3 className="mt-2 font-display text-[1.375rem] font-semibold leading-snug text-night">
+        <h3 className="mt-2 font-display text-[1.375rem] font-normal leading-snug text-night">
           {name}
         </h3>
 

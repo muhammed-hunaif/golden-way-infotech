@@ -26,25 +26,16 @@ export default function Services() {
   return (
     <>
       <Section id="services" tone="white" ariaLabel="Technology and service capabilities">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <SectionTitle
-            overline="Technology & Service Capabilities"
-            title={
-              <>
-                Capability areas built on
-                <span className="text-gradient-gold"> applied project experience.</span>
-              </>
-            }
-            description="Client engagements typically fall into a few connected capability areas, spanning software engineering, database technologies, cloud and cybersecurity, emerging technologies, and creative and marketing disciplines."
-          />
-
-          <p
-            className="shrink-0 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-ink-muted lg:pb-2"
-            data-reveal
-          >
-            {SERVICES.length} Services
-          </p>
-        </div>
+        <SectionTitle
+          overline="Technology & Service Capabilities"
+          title={
+            <>
+              Capability areas built on
+              <span className="text-gradient-gold"> applied project experience.</span>
+            </>
+          }
+          description="Client engagements typically fall into a few connected capability areas, spanning software engineering, database technologies, cloud and cybersecurity, emerging technologies, and creative and marketing disciplines."
+        />
 
         {/* Category filter */}
         <div

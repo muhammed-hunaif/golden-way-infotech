@@ -17,7 +17,7 @@ function StatCard({ stat, index }) {
         aria-hidden="true"
       />
 
-      <p className="text-gradient-gold font-display text-[2.75rem] font-semibold leading-none tracking-tight sm:text-5xl lg:text-[3.5rem]">
+      <p className="text-gradient-gold font-display text-[2.75rem] font-normal leading-none tracking-tight sm:text-5xl lg:text-[3.5rem]">
         <span aria-hidden="true">
           {display}
           {suffix}
@@ -29,7 +29,7 @@ function StatCard({ stat, index }) {
         </span>
       </p>
 
-      <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/55">
+      <p className="mt-4 font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-white/55">
         {label}
       </p>
     </div>

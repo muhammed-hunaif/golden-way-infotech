@@ -7,6 +7,10 @@
     --color-gold: #b8862d;
     --color-gold-highlight: #d4af37;
     --color-gold-dark: #8a641c;
+    /* Drives `scroll-padding-top`, so it must track the real bar: `py-2` top and
+       bottom (1rem) plus the `sm:h-16` logo (4rem). Update this whenever the bar
+       padding or logo size in `Navbar.jsx` changes, or anchored sections land
+       under it. `scroll-mt-*` on <Section> carries the same figure. */
     --nav-height: 5rem;
   }
 
@@ -32,7 +36,12 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-semibold text-night;
+    /* Regular, matching the hero — one heading weight for the whole site.
+       Playfair Display draws its authority from stroke contrast rather than
+       weight, so the heavier cuts only thicken the thin strokes and turn muddy.
+       This is the single lever: change it here and every heading follows, unless
+       a component sets its own weight (none currently do). */
+    @apply font-display font-normal text-night;
     text-wrap: balance;
   }
 
@@ -45,6 +54,10 @@
     @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-white;
   }
 
+  /* These match bare class names only. A translucent ground such as `bg-night/95`
+     compiles to the class `bg-night\/95`, which `.bg-night` never matches — so a
+     dark surface built that way needs adding here explicitly, or its focus rings
+     keep the white offset above. */
   .bg-night :focus-visible,
   .bg-charcoal :focus-visible,
   .bg-night-gradient :focus-visible {
@@ -73,12 +86,38 @@
 }
 
 @layer components {
+  /* The whole site's vertical rhythm, applied by <Section>. Tightened twice from
+     the original 80/112/128px: sections were floating with more air above a
+     heading than the heading had presence.
+
+     It matters less than it looks now that sections are `min-h-[100svh]` and
+     centre their content — for a short section the visible gap is mostly the
+     leftover viewport height, not this. Where it does show is a section taller
+     than the fold, such as Services, whose heading sits exactly this far below
+     the section edge. Change it here and every section follows. */
   .section-padding {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-10 md:py-14 lg:py-16;
   }
 
+  /* Section eyebrow — tracked uppercase, set in the `caps` family. */
   .overline {
-    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-overline text-gold-600;
+    @apply font-caps text-[0.6875rem] font-semibold uppercase tracking-overline text-gold-600;
+  }
+
+  /* Smaller tracked label, same typographic voice as .overline. */
+  .label-caps {
+    @apply font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em];
+  }
+
+  /* Playfair Display 400 italic — the site's one emphasis.
+     The roman and the italic are genuinely different drawings in this family
+     rather than a slant, so the italic is the natural way to lift the second
+     half of a headline or set a pull quote apart. Weight stays at 400 to match
+     every other heading: the emphasis is the change of form, not of colour or
+     thickness, which is why it can sit inside a heading without breaking it.
+     Use it on a phrase, never on a whole block of running text. */
+  .display-accent {
+    @apply font-display font-normal italic;
   }
 
   .hairline {
@@ -102,8 +141,12 @@
     @apply block h-px w-10 bg-gold-500;
   }
 
+  /* The gold emphasis. Used on the closing phrase of a section heading and on
+     the stat numbers — never on body copy — so it carries the accent italic with
+     it: gold and italic are one gesture on this site, not two that have to be
+     remembered separately. Weight stays 400, matching every other heading. */
   .text-gradient-gold {
-    @apply bg-gold-gradient bg-clip-text text-transparent;
+    @apply bg-gold-gradient bg-clip-text font-display font-normal italic text-transparent;
   }
 }
 

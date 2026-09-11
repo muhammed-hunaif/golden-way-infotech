@@ -19,33 +19,25 @@ export default function VisionMission() {
 
       <div className="mt-14 grid gap-6 lg:grid-cols-2">
         {/* Vision — light card */}
-        <article
-          className="card-surface group relative flex flex-col p-9 hover:-translate-y-1 hover:border-gold-400/60 hover:shadow-lift md:p-12"
-          data-reveal
-        >
+        <article className="card-surface relative p-9 md:p-12" data-reveal>
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm border border-gold-500/25 bg-gold-50 text-gold-600">
             <Eye className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
           </span>
 
-          <h3 className="mt-8 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-gold-600">
+          <h3 className="mt-8 font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-gold-600">
             Vision
           </h3>
 
-          <blockquote className="mb-10 mt-5">
-            <p className="font-display text-[1.5rem] font-medium leading-[1.5] text-night md:text-[1.75rem]">
+          <blockquote className="mt-5">
+            <p className="display-accent text-[1.5rem] leading-[1.5] text-night md:text-[1.75rem]">
               &ldquo;{VISION_MISSION.vision}&rdquo;
             </p>
           </blockquote>
-
-          <span
-            className="mt-auto block h-px w-16 bg-gold-500 transition-[width] duration-700 ease-premium group-hover:w-28"
-            aria-hidden="true"
-          />
         </article>
 
         {/* Mission — dark card */}
         <article
-          className="group relative flex flex-col overflow-hidden rounded-sm border border-white/10 bg-night-gradient p-9 shadow-card transition-all duration-500 ease-premium hover:-translate-y-1 hover:border-gold-500/50 hover:shadow-lift md:p-12"
+          className="relative overflow-hidden rounded-sm border border-white/10 bg-night-gradient p-9 shadow-card md:p-12"
           data-reveal
         >
           <span
@@ -60,20 +52,15 @@ export default function VisionMission() {
             <Compass className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
           </span>
 
-          <h3 className="mt-8 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-gold-400">
+          <h3 className="mt-8 font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-gold-400">
             Mission
           </h3>
 
-          <blockquote className="mb-10 mt-5">
-            <p className="font-display text-[1.5rem] font-medium leading-[1.5] text-white md:text-[1.75rem]">
+          <blockquote className="mt-5">
+            <p className="display-accent text-[1.5rem] leading-[1.5] text-white md:text-[1.75rem]">
               &ldquo;{VISION_MISSION.mission}&rdquo;
             </p>
           </blockquote>
-
-          <span
-            className="mt-auto block h-px w-16 bg-gold-500 transition-[width] duration-700 ease-premium group-hover:w-28"
-            aria-hidden="true"
-          />
         </article>
       </div>
     </Section>
