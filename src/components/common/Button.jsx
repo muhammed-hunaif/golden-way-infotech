@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn';
 import { scrollToSection } from '@/lib/scroll';
 
 const BASE =
-  'group inline-flex items-center justify-center gap-2.5 rounded-sm text-sm font-semibold tracking-wide transition-all duration-400 ease-premium disabled:cursor-not-allowed disabled:opacity-55';
+  'group inline-flex items-center justify-center gap-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-400 ease-premium disabled:cursor-not-allowed disabled:opacity-55';
 
 const VARIANTS = {
   /** Filled gold — the single strongest call to action on a screen. */
@@ -62,13 +62,8 @@ const Button = forwardRef(function Button(
           aria-hidden="true"
         />
       )}
+
       <span>{children}</span>
-      {Icon && iconPosition === 'right' && (
-        <Icon
-          className="h-4 w-4 shrink-0 transition-transform duration-400 ease-premium group-hover:translate-x-1"
-          aria-hidden="true"
-        />
-      )}
     </>
   );
 

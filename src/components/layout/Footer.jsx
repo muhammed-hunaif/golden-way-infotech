@@ -64,8 +64,12 @@ export default function Footer() {
             </address>
           </div>
 
-          {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+          {/* Link columns. There are six: the five in FOOTER_COLUMNS plus
+              Contact below. The count has to divide the column count evenly or
+              the last one is orphaned on a row of its own — which is what
+              `lg:grid-cols-5` was doing to Contact. Three columns gives two full
+              rows and leaves the longer link labels room to sit on one line. */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             {FOOTER_COLUMNS.map((column) => (
               <nav key={column.title} aria-label={column.title}>
                 <h2 className="label-caps text-night">{column.title}</h2>

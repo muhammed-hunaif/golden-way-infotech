@@ -1,4 +1,4 @@
-import { ArrowRight, Building2, GraduationCap, Layers, Users } from 'lucide-react';
+import { Building2, GraduationCap, Layers, Users } from 'lucide-react';
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
 import Button from '@/components/common/Button';
@@ -76,7 +76,7 @@ export default function About() {
         </ul>
 
         <div className="mt-10" data-reveal>
-          <Button href="#why-us" variant="outlineDark" size="md" icon={ArrowRight}>
+          <Button href="#why-us" variant="outlineDark" size="md">
             Learn More
           </Button>
         </div>

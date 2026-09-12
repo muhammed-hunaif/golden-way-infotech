@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CircleCheckBig, Send } from 'lucide-react';
+import { CircleCheckBig } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { validateEnquiry } from '@/lib/validation';
 import { SERVICE_CATEGORIES } from '@/data/services';
@@ -217,7 +217,7 @@ export default function EnquiryForm() {
           Fields marked <span className="text-gold-600">*</span> are required.
         </p>
 
-        <Button type="submit" variant="primary" size="lg" icon={Send} className="w-full sm:w-auto">
+        <Button type="submit" variant="primary" size="lg" className="w-full sm:w-auto">
           Send Enquiry
         </Button>
       </div>

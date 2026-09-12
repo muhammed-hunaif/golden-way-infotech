@@ -49,32 +49,30 @@ export default {
       fontFamily: {
         // DM Sans is the workhorse: body copy, navigation, buttons, form fields.
         sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Playfair Display carries the brand voice — headings, and its italic
-        // for the Vision and Mission pull quotes. A high-contrast serif against
-        // the geometric sans body is the whole contrast of the type system.
-        display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
-        // Deliberately NOT the display serif: Playfair's thin strokes break up at
-        // label size, so tracked caps labels borrow the sans instead. Kept as a
-        // separate token so the label voice can be changed on its own later.
+        // Pliant carries the brand voice — headings, the eyebrow, and its italic
+        // for the accents and pull quotes. It is a sans, so the contrast against
+        // DM Sans is one of character and weight rather than serif against sans.
+        display: ['"Pliant"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Kept as a separate token from `display` so the tracked-caps label voice
+        // can be changed on its own later.
         caps: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
-      // Sized for Playfair Display. The serif has a tall x-height and sets
-      // narrower than the geometric sans it replaced, so it carries these sizes
-      // comfortably — but it must not be tracked in tightly: negative letter
-      // spacing collapses the hairline strokes that give it its contrast, so the
-      // values here are near zero where the previous sans wanted -0.025em.
+      // Sized for Pliant. A sans has no hairline strokes to collapse, so the
+      // near-zero tracking the previous serif required is back to the negative
+      // values large sans display text wants — without it, headings at these
+      // sizes read loose and the words drift apart.
       fontSize: {
         'display-sm': [
           'clamp(1.75rem, 3.8vw, 2.25rem)',
-          { lineHeight: '1.22', letterSpacing: '-0.005em' },
+          { lineHeight: '1.22', letterSpacing: '-0.012em' },
         ],
         'display-md': [
           'clamp(2rem, 4.8vw, 3rem)',
-          { lineHeight: '1.16', letterSpacing: '-0.008em' },
+          { lineHeight: '1.16', letterSpacing: '-0.018em' },
         ],
         'display-lg': [
           'clamp(2.5rem, 6.2vw, 3.875rem)',
-          { lineHeight: '1.12', letterSpacing: '-0.012em' },
+          { lineHeight: '1.12', letterSpacing: '-0.024em' },
         ],
       },
       letterSpacing: {
@@ -91,9 +89,10 @@ export default {
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #B8862D 48%, #8A641C 100%)',
-        'gold-sheen': 'linear-gradient(100deg, transparent 20%, rgba(212, 175, 55, 0.22) 50%, transparent 80%)',
+        'gold-sheen':
+          'linear-gradient(100deg, transparent 20%, rgba(212, 175, 55, 0.22) 50%, transparent 80%)',
         'night-gradient': 'linear-gradient(160deg, #111111 0%, #1A1A1A 55%, #141414 100%)',
-        'hairline': 'linear-gradient(90deg, transparent, rgba(184, 134, 45, 0.55), transparent)',
+        hairline: 'linear-gradient(90deg, transparent, rgba(184, 134, 45, 0.55), transparent)',
       },
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.22, 1, 0.36, 1)',

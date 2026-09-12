@@ -109,14 +109,7 @@ export default function MobileMenu({ isOpen, onClose, activeId, offsetTop = 0 })
       </nav>
 
       <div className="border-t border-black/[0.07] px-6 py-6">
-        <Button
-          href="#contact"
-          variant="primary"
-          size="md"
-          className="w-full"
-          onClick={onClose}
-          icon={ArrowRight}
-        >
+        <Button href="#contact" variant="primary" size="md" className="w-full" onClick={onClose}>
           Let&apos;s Talk
         </Button>
 

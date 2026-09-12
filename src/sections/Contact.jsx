@@ -36,7 +36,7 @@ export default function Contact() {
             at supporting size. */}
         <div>
           <div data-reveal>
-            <p className="overline">Dubai Head Office</p>
+            <p className="eyebrow">Dubai Head Office</p>
 
             <p className="mt-5 font-display text-[2.25rem] font-normal leading-none text-night md:text-[2.75rem]">
               Dubai
@@ -81,7 +81,7 @@ export default function Contact() {
           </dl>
 
           <div className="mt-10 border-t border-black/[0.08] pt-8" data-reveal>
-            <p className="overline">India Presence</p>
+            <p className="eyebrow">India Presence</p>
             <ul className="mt-5 space-y-2">
               {SITE.indiaPresence.map((location) => (
                 <li

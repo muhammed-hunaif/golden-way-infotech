@@ -82,62 +82,72 @@ export default function NavDropdown({ link, isActive, activeId, onNavigate }) {
         )}
       >
         {link.label}
-        <ChevronDown
-          className={cn(
-            'h-3.5 w-3.5 transition-transform duration-300 ease-premium',
-            isOpen && 'rotate-180',
-          )}
-          aria-hidden="true"
-        />
+        <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
         <span
           className={cn(
-            'absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-gold-500 transition-transform duration-500 ease-premium xl:inset-x-4',
-            isActive ? 'scale-x-100' : 'scale-x-0',
+            'absolute inset-x-3.5 -bottom-0.5 h-px bg-gold-500 xl:inset-x-4',
+            isActive ? 'block' : 'hidden',
           )}
           aria-hidden="true"
         />
       </button>
 
-      {isOpen && (
-        <div className="absolute left-0 top-full z-10 pt-3">
-          <ul className="min-w-[16rem] animate-fade-in overflow-hidden rounded-sm border border-gold-500/25 bg-white p-1.5 shadow-lift">
-            {link.children.map((child) => {
-              const isChildActive = activeId === child.id;
+      {/* Always mounted, hidden with `invisible` rather than unmounted. Keeping
+          it in the DOM means the browser has already laid the panel out before
+          it is shown — nothing is measured, positioned or reflowed at the moment
+          it appears, which is what a mount-on-open panel does on every hover.
 
-              return (
-                <li key={child.href + child.label}>
-                  <a
-                    href={child.href}
-                    onClick={(event) => {
-                      setIsOpen(false);
-                      onNavigate(event, child.href);
-                    }}
-                    aria-current={isChildActive ? 'true' : undefined}
+          `inert` while closed keeps its links out of the tab order and the
+          accessibility tree, and `pointer-events-none` stops the hidden panel
+          from swallowing clicks meant for the page beneath it. */}
+      <div
+        inert={!isOpen}
+        className={cn(
+          // No transition and no transform. The panel is simply present or
+          // absent — nothing fades, slides or settles. Crossing a row of nav
+          // items opens and closes several of these in quick succession, and any
+          // movement at that speed reads as flicker.
+          'absolute left-0 top-full z-10 pt-3',
+          isOpen ? 'visible' : 'pointer-events-none invisible',
+        )}
+      >
+        <ul className="min-w-[20rem] overflow-hidden rounded-lg border border-black/[0.06] bg-white p-2 shadow-[0_18px_50px_-12px_rgba(17,17,17,0.22)] ring-1 ring-black/[0.02]">
+          {link.children.map((child) => {
+            const isChildActive = activeId === child.id;
+
+            return (
+              <li key={child.href + child.label}>
+                <a
+                  href={child.href}
+                  onClick={(event) => {
+                    setIsOpen(false);
+                    onNavigate(event, child.href);
+                  }}
+                  aria-current={isChildActive ? 'true' : undefined}
+                  className={cn(
+                    'block rounded-md px-4 py-3 transition-colors duration-200 ease-premium hover:bg-cream',
+                    isChildActive && 'bg-gold-50',
+                  )}
+                >
+                  <span
                     className={cn(
-                      'block rounded-sm px-3.5 py-2.5 transition-colors duration-300 ease-premium hover:bg-gold-50',
-                      isChildActive && 'bg-gold-50',
+                      'block text-[0.875rem] font-medium',
+                      isChildActive ? 'text-gold-700' : 'text-night',
                     )}
                   >
-                    <span
-                      className={cn(
-                        'block text-[0.8125rem] font-medium',
-                        isChildActive ? 'text-gold-700' : 'text-night',
-                      )}
-                    >
-                      {child.label}
+                    {child.label}
+                  </span>
+                  {child.hint && (
+                    <span className="mt-1 block text-[0.75rem] leading-snug text-ink-muted">
+                      {child.hint}
                     </span>
-                    {child.hint && (
-                      <span className="mt-0.5 block text-[0.6875rem] text-ink-muted">
-                        {child.hint}
-                      </span>
-                    )}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </li>
   );
 }

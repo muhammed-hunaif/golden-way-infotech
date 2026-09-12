@@ -1,4 +1,4 @@
-import { ArrowRight, GraduationCap } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import { TRAINING_AUDIENCE, TRAINING_INTRO, TRAINING_PILLARS } from '@/data/training';
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -56,7 +56,7 @@ export default function Training() {
           </div>
 
           <div className="mt-8" data-reveal>
-            <Button href="#contact" variant="outlineDark" size="md" icon={ArrowRight}>
+            <Button href="#contact" variant="outlineDark" size="md">
               Training Enquiries
             </Button>
           </div>

@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { SITE } from '@/config/site';
 import Button from '@/components/common/Button';
@@ -26,8 +25,7 @@ export default function Hero() {
         .from('[data-hero="overline"]', { opacity: 0, y: 14, duration: 0.8 })
         .from('[data-hero="line"]', { opacity: 0, y: 34, duration: 1.1, stagger: 0.14 }, '-=0.45')
         .from('[data-hero="lead"]', { opacity: 0, y: 18, duration: 0.9 }, '-=0.7')
-        .from('[data-hero="cta"]', { opacity: 0, y: 14, duration: 0.75, stagger: 0.1 }, '-=0.6')
-        .from('[data-hero="scroll"]', { opacity: 0, duration: 0.8 }, '-=0.4');
+        .from('[data-hero="cta"]', { opacity: 0, y: 14, duration: 0.75, stagger: 0.1 }, '-=0.6');
     }, root);
 
     return () => ctx.revert();
@@ -37,13 +35,14 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
-      // Not a full viewport: at `100svh` the copy block is far shorter than the
-      // box it is centred in, and the leftover height splits evenly above and
-      // below it — which is exactly where the dead space at the top and bottom
-      // came from. `78svh` sizes the section nearer its content while still
-      // filling most of the fold. The `pt` stays ahead of the fixed 80px navbar
-      // that overlays this section; it is clearance, not decoration.
-      className="relative isolate flex min-h-[78svh] items-center overflow-hidden bg-night pb-16 pt-24 md:min-h-[82svh] md:pt-28"
+      // Height only from `lg`, for the same reason <Section> gates it: an iPad in
+      // portrait is 820 x 1180, so `82svh` would reserve ~920px for ~430px of
+      // copy and split the leftover evenly above and below. Below `lg` the hero
+      // is simply its content plus padding.
+      //
+      // The `pt` stays ahead of the fixed 80px navbar that overlays this section
+      // — that is clearance, not decoration, so it does not scale away.
+      className="relative isolate flex items-center overflow-hidden bg-night pb-16 pt-24 md:pt-28 lg:min-h-[82svh]"
       aria-label="Introduction"
     >
       <HeroVideo />
@@ -54,11 +53,9 @@ export default function Hero() {
             to be visible to the right of it, rather than being boxed, framed or
             partnered with a second column of content. */}
         <div className="max-w-2xl">
-          <p
-            data-hero="overline"
-            className="flex items-center gap-3 font-caps text-[0.6875rem] font-medium uppercase tracking-[0.28em] text-gold-300/90"
-          >
-            <span className="h-px w-10 bg-gold-400/70" aria-hidden="true" />
+          {/* The same `.eyebrow` every section uses via <SectionTitle>, with
+              the gold the rest of the site switches to on a dark ground. */}
+          <p data-hero="overline" className="eyebrow text-gold-300">
             {SITE.tagline}
           </p>
 
@@ -80,38 +77,14 @@ export default function Hero() {
             behind them.
           </p>
 
-          <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mt-11">
             <span data-hero="cta" className="inline-flex">
-              <Button href="#services" variant="primary" size="lg" icon={ArrowRight}>
+              <Button href="#services" variant="primary" size="lg">
                 Explore Services
-              </Button>
-            </span>
-            <span data-hero="cta" className="inline-flex">
-              <Button href="#contact" variant="outline" size="lg">
-                Let&apos;s Talk
               </Button>
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Pinned to the section's own bottom edge rather than sitting in the
-          content flow, so it reads as a page affordance and never pushes the
-          copy off-centre on a short viewport. */}
-      <div
-        data-hero="scroll"
-        className="absolute inset-x-0 bottom-8 flex justify-center md:bottom-10"
-      >
-        <a
-          href="#stats"
-          className="group inline-flex flex-col items-center gap-2 font-caps text-[0.625rem] font-medium uppercase tracking-[0.28em] text-white/40 transition-colors duration-500 hover:text-gold-200"
-        >
-          Scroll
-          <ChevronDown
-            className="h-4 w-4 animate-bounce text-gold-400/60 [animation-duration:2.6s] group-hover:text-gold-300"
-            aria-hidden="true"
-          />
-        </a>
       </div>
     </section>
   );

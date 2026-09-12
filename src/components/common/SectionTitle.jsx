@@ -1,7 +1,7 @@
 import { cn } from '@/lib/cn';
 
 /**
- * Standard section heading block: gold rule + overline, display heading, lead copy.
+ * Standard section heading block: gold rule + eyebrow, display heading, lead copy.
  * `tone` switches the palette for dark sections; `align` handles centred layouts.
  */
 export default function SectionTitle({
@@ -20,12 +20,8 @@ export default function SectionTitle({
   return (
     <div className={cn('max-w-3xl', isCentered && 'mx-auto text-center', className)}>
       {overline && (
-        <div
-          className={cn('mb-5 flex items-center gap-3', isCentered && 'justify-center')}
-          data-reveal
-        >
-          <span className={cn('rule-gold', isDark && 'bg-gold-400')} aria-hidden="true" />
-          <span className={cn('overline', isDark && 'text-gold-400')}>{overline}</span>
+        <div className={cn('mb-5', isCentered && 'text-center')} data-reveal>
+          <span className={cn('eyebrow', isDark && 'text-gold-400')}>{overline}</span>
         </div>
       )}
 

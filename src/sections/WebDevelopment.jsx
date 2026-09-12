@@ -1,4 +1,3 @@
-import { ChevronDown } from 'lucide-react';
 import { WEB_PROCESS_NOTE, WEB_PROCESS_STEPS } from '@/data/webProcess';
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -20,52 +19,35 @@ export default function WebDevelopment() {
         description="Every engagement starts with understanding what a business is trying to achieve online: its audience, message, page structure, and the functionality visitors will actually need."
       />
 
-      <ol className="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {WEB_PROCESS_STEPS.map((step, index) => (
-          <li key={step.id} className="relative" data-reveal>
-            <article className="group h-full rounded-sm border border-white/10 bg-white/[0.025] p-7 transition-all duration-500 ease-premium hover:-translate-y-1 hover:border-gold-500/45 hover:bg-white/[0.05] md:p-8">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-gold-500/30 bg-white/[0.04] text-gold-400">
-                  <step.icon
-                    className="h-[1.125rem] w-[1.125rem]"
-                    strokeWidth={1.6}
-                    aria-hidden="true"
-                  />
-                </span>
-                <span
-                  className="font-display text-[0.8125rem] font-normal text-white/20 transition-colors duration-500 ease-premium group-hover:text-gold-500"
-                  aria-hidden="true"
-                >
-                  {step.step}
-                </span>
-              </div>
+      {/* A ruled grid, not six cards. Each stage gets a gold hairline above it —
+          a start line — instead of a box around it. Six bordered panels on a dark
+          ground read as six separate offers; six ruled entries read as one
+          sequence, which is what this actually is. */}
+      <ol className="mt-16 grid gap-x-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+        {WEB_PROCESS_STEPS.map((step) => (
+          <li key={step.id} className="border-t border-gold-500/30 pt-6" data-reveal>
+            <span className="display-accent block text-[0.9375rem] leading-none text-gold-400">
+              {step.step}
+            </span>
 
-              <h3 className="mt-6 font-display text-[1.25rem] font-normal text-white">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-[0.8125rem] leading-[1.8] text-white/55">
-                {step.description}
-              </p>
-            </article>
+            <h3 className="mt-5 font-display text-[1.25rem] font-normal leading-snug text-white">
+              {/* The visible number is decorative, so the order is restated here
+                  for anyone listening rather than looking. */}
+              <span className="sr-only">{`Stage ${step.step}: `}</span>
+              {step.title}
+            </h3>
 
-            {/* Flow arrow between stages (small screens read top-to-bottom). */}
-            {index < WEB_PROCESS_STEPS.length - 1 && (
-              <span
-                className="mx-auto flex h-6 items-center justify-center md:hidden"
-                aria-hidden="true"
-              >
-                <ChevronDown className="h-4 w-4 text-gold-500/50" />
-              </span>
-            )}
+            <p className="mt-3 text-[0.8125rem] leading-[1.8] text-white/55">{step.description}</p>
           </li>
         ))}
       </ol>
 
-      <div
-        className="mx-auto mt-12 max-w-3xl rounded-sm border border-gold-500/25 bg-white/[0.03] p-7 text-center md:p-8"
-        data-reveal
-      >
-        <p className="text-[0.875rem] leading-[1.85] text-white/65">{WEB_PROCESS_NOTE}</p>
+      {/* The closing note sits under a full-width rule rather than inside its own
+          outlined box — it is a footnote to the sequence, not a seventh stage. */}
+      <div className="mt-16 border-t border-white/10 pt-8" data-reveal>
+        <p className="mx-auto max-w-3xl text-center text-[0.875rem] leading-[1.85] text-white/60">
+          {WEB_PROCESS_NOTE}
+        </p>
       </div>
     </Section>
   );
