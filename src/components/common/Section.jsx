@@ -67,7 +67,7 @@ export default function Section({
       // `cn` is a plain joiner with no conflict resolution.
       className={cn(
         'relative flex scroll-mt-20 flex-col justify-center overflow-hidden',
-        fullHeight && 'lg:min-h-[100svh]',
+        fullHeight && 'lg:landscape:min-h-[100svh]',
         TONES[tone] ?? TONES.cream,
         className,
       )}
