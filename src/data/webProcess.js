@@ -8,7 +8,7 @@ export const WEB_PROCESS_STEPS = [
     title: 'Understand Requirements',
     icon: ClipboardList,
     description:
-      'Every engagement starts with understanding what a business is trying to achieve online: its audience, message, page structure, and the functionality visitors will actually need.',
+      'We analyze your audience, goals, and page structure to define exactly what your site must deliver.',
   },
   {
     id: 'plan-structure',
@@ -16,7 +16,7 @@ export const WEB_PROCESS_STEPS = [
     title: 'Plan / Structure',
     icon: LayoutTemplate,
     description:
-      'Page structure and functionality are mapped out before build work begins, so the scope of the site is agreed rather than assumed.',
+      'We map page structure and functionality upfront, agreeing on scope before any build work begins.',
   },
   {
     id: 'development',
@@ -24,7 +24,7 @@ export const WEB_PROCESS_STEPS = [
     title: 'Development',
     icon: Code2,
     description:
-      'Engineering draws on PHP and Java for application logic and backend processing, with JavaScript shaping front-end behaviour, so the finished build stays functional and able to grow alongside the business.',
+      'Our engineers build with PHP, Java, and JavaScript for robust backend logic and interactive front-end behavior.',
   },
   {
     id: 'testing',
@@ -32,14 +32,15 @@ export const WEB_PROCESS_STEPS = [
     title: 'Testing',
     icon: TestTube2,
     description:
-      'Pages move through testing before going live, confirming that structure and functionality behave as intended.',
+      'We test every page to confirm structure, links, forms, and functionality work as intended before launch.',
   },
   {
     id: 'deployment',
     step: '05',
     title: 'Deployment',
     icon: Rocket,
-    description: 'The tested build is deployed and taken live.',
+    description:
+      'After testing, you deploy your build to the live server and make it accessible to visitors.',
   },
   {
     id: 'maintenance',
@@ -47,7 +48,7 @@ export const WEB_PROCESS_STEPS = [
     title: 'Maintenance',
     icon: RefreshCw,
     description:
-      'Deployment is followed by six months of complimentary content updates. New modules, added pages, or functionality beyond the original scope are handled separately, priced by mutual agreement based on complexity.',
+      'You receive six months of complimentary content updates; extra pages or modules are priced by complexity.',
   },
 ];
 
