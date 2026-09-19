@@ -77,7 +77,7 @@ export default function NavDropdown({ link, isActive, activeId, onNavigate }) {
         aria-haspopup="true"
         onClick={() => setIsOpen((open) => !open)}
         className={cn(
-          'relative flex items-center gap-1.5 rounded-sm px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-400 ease-premium hover:text-gold-700 xl:px-4',
+          'relative flex items-center gap-1.5 rounded-sm px-3.5 py-2 text-[0.875rem] font-bold transition-colors duration-400 ease-premium hover:text-gold-700 xl:px-4',
           isActive || isOpen ? 'text-gold-700' : 'text-ink-soft',
         )}
       >
@@ -131,7 +131,7 @@ export default function NavDropdown({ link, isActive, activeId, onNavigate }) {
                 >
                   <span
                     className={cn(
-                      'block text-[0.875rem] font-medium',
+                      'block text-[0.875rem] font-semibold',
                       isChildActive ? 'text-gold-700' : 'text-night',
                     )}
                   >

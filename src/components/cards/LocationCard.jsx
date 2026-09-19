@@ -1,33 +1,63 @@
 import { memo } from 'react';
+import { MapPin } from 'lucide-react';
+import { cn } from '@/lib/cn';
 
 /**
- * One hub in the Global Technology & Talent Network.
+ * One hub in the Global Technology & Talent Network, as a card.
  *
- * Plain type in a column, not an interactive card. It was a `<button>` that
- * drove a highlight on a decorative map, which meant four controls that did not
- * navigate anywhere and told a screen reader they were pressable. With the map
- * gone there is nothing to select, so this is simply a heading and its copy.
- *
- * The "Head Office" badge went with it: Dubai's own `role` already reads
- * "Head Office & Regional Command Center", so the badge repeated it one line
- * above itself.
+ * The city is the largest thing on the card because it is what a visitor
+ * scanning four of them is matching against — "is there one near me?" — and
+ * everything else answers the follow-up. The head office carries a gold tag
+ * and a gold hairline on top; the India hubs a plain region tag and a white
+ * one. That is the whole difference, so the four still read as one network.
  */
 function LocationCard({ location }) {
-  const { city, region, role, contribution } = location;
+  const { city, market, region, role, address, contribution, isHeadOffice } = location;
 
   return (
-    <li className="lg:px-8 lg:first:pl-0 lg:last:pr-0" data-reveal>
-      <p className="font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-white/40">
-        {region}
+    <li
+      className={cn(
+        'group relative flex flex-col overflow-hidden rounded-sm border bg-night p-7 transition-colors duration-500 ease-premium hover:bg-charcoal-light md:p-8',
+        isHeadOffice ? 'border-gold-500/40' : 'border-white/10',
+      )}
+      data-reveal
+    >
+      {/* Top rule: gold for the head office, faint for the rest. */}
+      <span
+        className={cn(
+          'absolute inset-x-0 top-0 h-px',
+          isHeadOffice ? 'bg-gold-500' : 'bg-white/15',
+        )}
+        aria-hidden="true"
+      />
+
+      <p
+        className={cn(
+          'font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em]',
+          isHeadOffice ? 'text-gold-400' : 'text-white/40',
+        )}
+      >
+        {isHeadOffice ? 'Head Office' : region}
       </p>
 
-      <h3 className="mt-3 font-display text-[1.75rem] font-normal leading-none text-white">
+      <h3 className="mt-6 font-display text-[2.25rem] font-normal leading-none text-white md:text-[2.5rem]">
         {city}
       </h3>
+      <p className="mt-2 text-[0.875rem] text-white/45">{market}</p>
 
-      <p className="mt-4 text-[0.8125rem] font-medium text-gold-300">{role}</p>
+      <p className="mt-4 flex items-center gap-2 text-[0.8125rem] text-white/70">
+        <MapPin
+          className="h-3.5 w-3.5 shrink-0 text-gold-500"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />
+        <span>{address}</span>
+      </p>
 
-      <p className="mt-4 text-[0.875rem] leading-[1.8] text-white/55">{contribution}</p>
+      <div className="mt-6 border-t border-white/10 pt-5">
+        <p className="text-[0.875rem] font-medium leading-snug text-gold-300">{role}</p>
+        <p className="mt-3 text-[0.8125rem] leading-[1.8] text-white/55">{contribution}</p>
+      </div>
     </li>
   );
 }

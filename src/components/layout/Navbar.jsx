@@ -114,7 +114,7 @@ export default function Navbar() {
                     onClick={(event) => handleNavClick(event, link.href)}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'relative block rounded-sm px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-400 ease-premium hover:text-gold-700 xl:px-4',
+                      'relative block rounded-sm px-3.5 py-2 text-[0.875rem] font-bold transition-colors duration-400 ease-premium hover:text-gold-700 xl:px-4',
                       isActive ? 'text-gold-700' : 'text-ink-soft',
                     )}
                   >

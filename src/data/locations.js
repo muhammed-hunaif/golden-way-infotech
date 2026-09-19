@@ -10,6 +10,7 @@ export const LOCATIONS = [
     market: 'UAE',
     region: 'United Arab Emirates',
     role: 'Head Office & Regional Command Center',
+    address: 'Near JAFZA (Jebel Ali Free Zone)',
     contribution:
       'Sets organizational direction and coordinates technology delivery and training standards across all hubs, while serving as the primary gateway to Middle Eastern and international markets.',
     isHeadOffice: true,
@@ -21,6 +22,7 @@ export const LOCATIONS = [
     market: 'India',
     region: 'Tamil Nadu, India',
     role: 'Software Engineering Hub',
+    address: 'Near Tidel Park',
     contribution:
       'Anchors core software and application development work, supplying engineering depth to client projects and technical training programs alike.',
     isHeadOffice: false,
@@ -32,6 +34,7 @@ export const LOCATIONS = [
     market: 'India',
     region: 'Karnataka, India',
     role: 'Emerging Technology & Innovation Hub',
+    address: 'Near Gandhi Nagar',
     contribution:
       "Focuses on advanced and emerging technology domains, feeding new capability and technical currency into the wider organization's project and training pipelines.",
     isHeadOffice: false,
@@ -43,6 +46,7 @@ export const LOCATIONS = [
     market: 'India',
     region: 'Kerala, India',
     role: 'Talent Development & Training Hub',
+    address: 'Near IT Park',
     contribution:
       'Concentrates on professional development and skill-building programs, preparing industry-ready talent that supports both learner outcomes and client-facing project teams.',
     isHeadOffice: false,

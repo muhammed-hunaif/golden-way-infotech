@@ -19,13 +19,11 @@ export default function GlobalPresence() {
         description="Anchored by its Dubai headquarters and supported by three technology centres across India, the organization moves projects, professionals, and practical training across borders with the same operational discipline in every location."
       />
 
-      {/* Four columns divided by hairlines rather than four boxes. The rules
-          carry the idea the section is about — one network, separated only by
-          geography — where bordered cards would have read as four detached
-          offices. `divide-x` applies only from `lg`, where all four sit in a
-          single row; below that they stack in two columns and the vertical rules
-          would fall in the wrong places. */}
-      <ul className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-0 lg:gap-y-0 lg:divide-x lg:divide-white/10">
+      {/* Four cards, one row from `lg`. The head office is first and marked
+          by its gold rule; the India hubs follow in the order the profile
+          lists them. Cards rather than ruled columns so each hub has a shape
+          the eye can count. */}
+      <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {LOCATIONS.map((location) => (
           <LocationCard key={location.id} location={location} />
         ))}

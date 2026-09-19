@@ -124,6 +124,15 @@
     @apply h-px w-full bg-hairline;
   }
 
+  /* Hides the bar on a track that scrolls natively; the arrows beside it are
+     the visible position. Scrolling itself is untouched. */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   .link-underline {
     @apply relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gold-500 after:transition-[width] after:duration-500 after:ease-premium hover:after:w-full;
   }

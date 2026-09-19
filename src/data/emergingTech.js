@@ -1,8 +1,13 @@
 import { BrainCircuit, ChartColumn, LineChart, Sparkles } from 'lucide-react';
+import artificialIntelligenceImage from '@/assets/emerging/artificial-intelligence.png';
+import machineLearningImage from '@/assets/emerging/machine-learning.png';
+import dataScienceImage from '@/assets/emerging/data-science.png';
+import dataAnalyticsImage from '@/assets/emerging/data-analytics.png';
 
 /**
  * Emerging Technologies — the four domains the company profile names under
- * "a separate strand of capability".
+ * "a separate strand of capability". Each carries its own 16:9 picture; the
+ * files are all the same size so the cards line up.
  */
 export const EMERGING_TECHNOLOGIES = [
   {
@@ -10,6 +15,7 @@ export const EMERGING_TECHNOLOGIES = [
     title: 'Artificial Intelligence',
     keyPoint: 'Intelligent Automation',
     icon: BrainCircuit,
+    image: artificialIntelligenceImage,
     description:
       'Systems that process information, recognize patterns, and make decisions with reduced manual input.',
   },
@@ -18,6 +24,7 @@ export const EMERGING_TECHNOLOGIES = [
     title: 'Machine Learning',
     keyPoint: 'Predictive Modeling',
     icon: Sparkles,
+    image: machineLearningImage,
     description:
       'Models that learn from historical data to make predictions or classifications on new inputs.',
   },
@@ -26,6 +33,7 @@ export const EMERGING_TECHNOLOGIES = [
     title: 'Data Science',
     keyPoint: 'Data-Driven Insight',
     icon: LineChart,
+    image: dataScienceImage,
     description:
       'Large or unstructured datasets collected, cleaned, and analyzed to uncover patterns that inform business decisions.',
   },
@@ -34,6 +42,7 @@ export const EMERGING_TECHNOLOGIES = [
     title: 'Data Analytics',
     keyPoint: 'Performance Reporting',
     icon: ChartColumn,
+    image: dataAnalyticsImage,
     description:
       'Existing datasets processed to identify trends, measure performance, and support reporting across a business.',
   },

@@ -18,7 +18,7 @@ export const NAV_LINKS = [
         href: '#vision-mission',
         hint: 'What we are building toward',
       },
-      { id: 'why-us', label: 'Why Choose Us', href: '#why-us', hint: 'Ten reasons' },
+      { id: 'why-us', label: 'Why Choose Us', href: '#why-us', hint: 'Six reasons' },
       {
         id: 'global-presence',
         label: 'Global Presence',
@@ -115,10 +115,10 @@ export const FOOTER_COLUMNS = [
   {
     title: 'Locations',
     links: [
-      { label: 'Dubai, UAE', href: '#global-presence' },
-      { label: 'Chennai, India', href: '#global-presence' },
-      { label: 'Bangalore, India', href: '#global-presence' },
-      { label: 'Kochi, India', href: '#global-presence' },
+      { label: 'Dubai · Near JAFZA', href: '#global-presence' },
+      { label: 'Chennai · Near Tidel Park', href: '#global-presence' },
+      { label: 'Bangalore · Near Gandhi Nagar', href: '#global-presence' },
+      { label: 'Kochi · Near IT Park', href: '#global-presence' },
     ],
   },
 ];

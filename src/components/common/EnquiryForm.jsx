@@ -19,6 +19,9 @@ const FIELD_BASE =
 /**
  * Enquiry form — frontend only.
  *
+ * It draws no frame of its own: the Contact section places it inside a panel
+ * that already carries the border, ground, and shadow.
+ *
  * This site has no backend, so nothing is transmitted anywhere. The form
  * validates locally and shows a confirmation state; wiring it to a real
  * endpoint is a later, separate piece of work.
@@ -60,7 +63,7 @@ export default function EnquiryForm() {
   if (isSubmitted) {
     return (
       <div
-        className="flex h-full flex-col items-center justify-center rounded-sm border border-gold-500/30 bg-white p-10 text-center shadow-card md:p-14"
+        className="flex h-full flex-col items-center justify-center rounded-sm border border-gold-500/30 bg-gold-50/40 px-6 py-12 text-center md:py-16"
         role="status"
         aria-live="polite"
       >
@@ -85,12 +88,7 @@ export default function EnquiryForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      noValidate
-      className="rounded-sm border border-black/[0.07] bg-white p-5 shadow-card sm:p-7 md:p-9"
-      aria-label="Enquiry form"
-    >
+    <form onSubmit={handleSubmit} noValidate className="w-full" aria-label="Enquiry form">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           id="enquiry-name"
