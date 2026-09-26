@@ -5,6 +5,10 @@ import Section from '@/components/common/Section';
 export default function CTA() {
   return (
     <Section id="cta" tone="night" ariaLabel="Get in touch" fullHeight={false}>
+      {/* Several pages end on a dark section, so the change of ground is not
+          always there to mark where the closing statement begins. The rule is. */}
+      <div className="hairline absolute inset-x-0 top-0" aria-hidden="true" />
+
       {/* One soft gold glow behind the action column, replacing the 64px grid
           that used to cover the whole section. A ruled background under a closing
           statement adds texture the statement does not need. */}
@@ -17,7 +21,7 @@ export default function CTA() {
       />
 
       {/* A statement only. No button and no number: the navbar carries
-          "Let's Talk" at every scroll position and the Contact section directly
+          the Contact link at every scroll position and the Contact section directly
           above holds every way to reach the office, so this closes the page
           rather than asking again. */}
       <div className="relative max-w-3xl">

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { SITE } from '@/config/site';
 import Button from '@/components/common/Button';
+import { ROUTES } from '@/config/navigation';
 import heroImage from '@/assets/hero/hero-team.png';
 
 export default function Hero() {
@@ -32,13 +33,14 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
+      data-nav-tone="dark"
       // Height only from `lg`, for the same reason <Section> gates it: an iPad in
       // portrait is 820 x 1180, so `82svh` would reserve far more height than the
       // copy needs and split the leftover above and below it.
       //
       // The `pt` stays ahead of the fixed 80px navbar that overlays this section
       // — that is clearance, not decoration, so it does not scale away.
-      className="relative isolate flex items-center overflow-hidden bg-night pb-16 pt-24 md:pt-28 lg:landscape:min-h-[82svh]"
+      className="relative isolate flex items-center overflow-hidden bg-night pb-16 pt-28 md:pt-36 lg:landscape:min-h-[82svh]"
       aria-label="Introduction"
     >
       <div className="absolute inset-0 -z-10" aria-hidden="true">
@@ -79,6 +81,10 @@ export default function Hero() {
           }}
         />
 
+        {/* Top edge: a soft dark band under the see-through navbar, so its white
+            links stay readable over the bright right-hand side of the photo. */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-night/70 to-transparent" />
+
         {/* Hands off to the dark band below with no visible edge. */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
@@ -103,16 +109,19 @@ export default function Hero() {
             className="mt-8 max-w-lg text-[0.9375rem] leading-[1.9] text-white/75 md:text-base"
           >
             A Dubai-headquartered technology and training company delivering software, cloud,
-            cybersecurity, AI and design solutions — and the training that puts skilled people
+            cybersecurity, AI and design solutions, and the training that puts skilled people
             behind them.
           </p>
 
-          <div className="mt-11">
-            <span data-hero="cta" className="inline-flex">
-              <Button href="#services" variant="primary" size="lg">
-                Explore Services
-              </Button>
-            </span>
+          {/* Two actions, stacking below `sm`. The wrapper carries the reveal
+              rather than each button, so the pair arrives as one gesture. */}
+          <div data-hero="cta" className="mt-11 flex flex-wrap items-center gap-4">
+            <Button to={ROUTES.services} variant="primary" size="lg">
+              Explore Services
+            </Button>
+            <Button to={ROUTES.contact} variant="outline" size="lg">
+              Let&apos;s Talk
+            </Button>
           </div>
         </div>
       </div>

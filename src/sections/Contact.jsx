@@ -106,7 +106,7 @@ export default function Contact() {
               Tell us what you are working on.
             </h3>
             <p className="mt-4 text-[0.875rem] leading-[1.8] text-ink-soft">
-              Business, training, or partnership — choose the service that fits and the right team
+              Business, training, or partnership. Choose the service that fits and the right team
               will pick it up.
             </p>
 

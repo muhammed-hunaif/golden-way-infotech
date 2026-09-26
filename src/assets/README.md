@@ -6,6 +6,7 @@
 | ------------------------- | ------------------------------------------------------------- |
 | `logo-golden-way.jpeg`    | The original artwork as supplied. Kept for reference; unused.  |
 | `logo-golden-way.png`     | **Shipped file.** Same artwork, white background removed.      |
+| `logo-golden-way-knockout.png` | Navbar version for dark sections: strapline in white. |
 
 `src/components/common/Logo.jsx` is the only file that imports the PNG, so Vite
 fingerprints and cache-busts it on build.
@@ -28,20 +29,26 @@ derived from it mechanically — **the marks themselves are unaltered**:
    separable by chroma (neutral grey, chroma < 25, luminance > 120) from the gold
    marks and the dark strapline, and are faded out.
 
-### Why every surface the logo sits on is light
+### The knockout version for dark surfaces
 
 The lockup's strapline — "Mobility Solutions For Your Business" — is **dark
-ink**. On a black ground it disappears, and no amount of background removal
-changes that: the logo was drawn for light surfaces.
+ink**, so on a black ground it disappears. The footer body is off-white, so it
+uses the standard PNG.
 
-So the site is built around it. The navbar is a light bar at every scroll
-position, the mobile menu is a light panel, and the footer body is off-white with
-only its legal bar in black. There is no white plate behind the logo and no
-`mix-blend-mode` trick anywhere — the logo simply sits on grounds it suits.
+The navbar is see-through, and over dark sections it uses
+`logo-golden-way-knockout.png` via `<Logo tone="dark" />`. That file is derived
+from the PNG:
 
-If a **reversed (knockout) version** for dark backgrounds is ever supplied, those
-surfaces can go dark again; that is a design decision for the brand owner, not
-something to synthesise from this file.
+- the dark, near-neutral strapline pixels (rows 74-85, below all of the gold)
+  are recoloured to white, keeping their alpha;
+- near-black drop-shadow leftovers in the gold (luminance < 55) are made
+  transparent, since they read as grime on a dark photo;
+- dark gold shading (luminance < 165) is scaled up to luminance 165, hue kept.
+
+The light-ground PNG is untouched.
+
+If the brand owner supplies an official reversed version, drop it in under the
+same name and it replaces this one with no code change.
 
 ### Regenerating or replacing
 

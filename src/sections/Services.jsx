@@ -1,8 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { cn } from '@/lib/cn';
 import { SERVICES, SERVICE_CATEGORIES } from '@/data/services';
+import { ROUTES } from '@/config/navigation';
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
+import Button from '@/components/common/Button';
 import ServiceCard from '@/components/cards/ServiceCard';
 import ServiceModal from '@/components/common/ServiceModal';
 import Pagination from '@/components/common/Pagination';
@@ -10,8 +12,16 @@ import Pagination from '@/components/common/Pagination';
 /** Two rows of three on a desktop — enough to judge the set without scrolling past it. */
 const PAGE_SIZE = 6;
 
-/** Technology & Service Capabilities — filterable, paginated grid of the 17 services. */
-export default function Services() {
+/**
+ * Technology & Service Capabilities.
+ *
+ * Two modes. On the Services page it is the full set: category filter, six to a
+ * page, the lot reachable. In `preview` mode — the home page — it is the first
+ * six tiles and a way through to the page that holds the rest, because a filter
+ * and a pager on a summary ask the visitor to work inside a section that was
+ * only ever meant to introduce one.
+ */
+export default function Services({ preview = false }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedService, setSelectedService] = useState(null);
   const [page, setPage] = useState(1);
@@ -32,8 +42,11 @@ export default function Services() {
   const currentPage = Math.min(page, pageCount);
 
   const visibleServices = useMemo(
-    () => filteredServices.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
-    [filteredServices, currentPage],
+    () =>
+      preview
+        ? SERVICES.slice(0, PAGE_SIZE)
+        : filteredServices.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    [preview, filteredServices, currentPage],
   );
 
   // Stable identity keeps memoised cards from re-rendering on filter changes.
@@ -66,38 +79,40 @@ export default function Services() {
             screen edges inside the padded container, so a chip is never clipped
             mid-word at the edge of the viewport. `no-scrollbar` hides the bar
             itself — the partially visible next chip is the affordance. */}
-        <div
-          className="no-scrollbar -mx-5 mt-12 flex snap-x gap-2.5 overflow-x-auto border-y border-black/[0.07] px-5 py-5 sm:-mx-6 sm:px-6 md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
-          role="group"
-          aria-label="Filter services by category"
-          data-reveal
-        >
-          {SERVICE_CATEGORIES.map((category) => {
-            const isActive = activeCategory === category.id;
+        {!preview && (
+          <div
+            className="no-scrollbar -mx-5 mt-12 flex snap-x gap-2.5 overflow-x-auto border-y border-black/[0.07] px-5 py-5 sm:-mx-6 sm:px-6 md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
+            role="group"
+            aria-label="Filter services by category"
+            data-reveal
+          >
+            {SERVICE_CATEGORIES.map((category) => {
+              const isActive = activeCategory === category.id;
 
-            return (
-              <button
-                key={category.id}
-                type="button"
-                onClick={() => {
-                  setActiveCategory(category.id);
-                  // A new filter is a new list; staying on page 3 of the old one
-                  // would land the visitor somewhere arbitrary in it.
-                  setPage(1);
-                }}
-                aria-pressed={isActive}
-                className={cn(
-                  'shrink-0 snap-start whitespace-nowrap rounded-sm border px-4 py-2 text-[0.8125rem] font-medium transition-all duration-400 ease-premium',
-                  isActive
-                    ? 'border-gold-500 bg-night text-white shadow-subtle'
-                    : 'border-black/10 bg-white text-ink-soft hover:border-gold-500/50 hover:text-gold-700',
-                )}
-              >
-                {category.label}
-              </button>
-            );
-          })}
-        </div>
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory(category.id);
+                    // A new filter is a new list; staying on page 3 of the old one
+                    // would land the visitor somewhere arbitrary in it.
+                    setPage(1);
+                  }}
+                  aria-pressed={isActive}
+                  className={cn(
+                    'shrink-0 snap-start whitespace-nowrap rounded-sm border px-4 py-2 text-[0.8125rem] font-medium transition-all duration-400 ease-premium',
+                    isActive
+                      ? 'border-gold-500 bg-night text-white shadow-subtle'
+                      : 'border-black/10 bg-white text-ink-soft hover:border-gold-500/50 hover:text-gold-700',
+                  )}
+                >
+                  {category.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* Grid. Hairlines live on the tiles (top + left) and the frame is closed
             by the container (bottom + right), so interior lines never double up
@@ -108,9 +123,12 @@ export default function Services() {
             row — the empty cells would show as grey blocks. Borders belong to
             tiles that exist. */}
         <div
-          className="mt-10 grid overflow-hidden rounded-sm border-b border-r border-black/[0.08] sm:grid-cols-2 lg:grid-cols-3"
+          className={cn(
+            'grid overflow-hidden rounded-sm border-b border-r border-black/[0.08] sm:grid-cols-2 lg:grid-cols-3',
+            preview ? 'mt-12' : 'mt-10',
+          )}
           role="list"
-          aria-live="polite"
+          aria-live={preview ? undefined : 'polite'}
         >
           {visibleServices.map((service) => (
             <div key={service.id} role="listitem" className="animate-fade-in" data-reveal>
@@ -119,17 +137,34 @@ export default function Services() {
           ))}
         </div>
 
-        <Pagination
-          page={currentPage}
-          pageCount={pageCount}
-          onChange={setPage}
-          label="Service pages"
-        />
+        {preview ? (
+          <div className="mt-10 flex flex-wrap items-center gap-6" data-reveal>
+            <Button to={ROUTES.services} variant="dark" size="md">
+              View All {SERVICES.length} Services
+            </Button>
+            <p className="text-[0.875rem] text-ink-muted">
+              Filter by software, database, cloud, AI, design and marketing.
+            </p>
+          </div>
+        ) : (
+          <>
+            <Pagination
+              page={currentPage}
+              pageCount={pageCount}
+              onChange={setPage}
+              label="Service pages"
+            />
 
-        <p className="mt-10 max-w-prose text-[0.875rem] leading-[1.8] text-ink-muted" data-reveal>
-          Across each area, work is grounded in applied project experience rather than theoretical
-          service descriptions alone. Select any service to read its full capability description.
-        </p>
+            <p
+              className="mt-10 max-w-prose text-[0.875rem] leading-[1.8] text-ink-muted"
+              data-reveal
+            >
+              Across each area, work is grounded in applied project experience rather than
+              theoretical service descriptions alone. Select any service to read its full capability
+              description.
+            </p>
+          </>
+        )}
       </Section>
 
       <ServiceModal service={selectedService} onClose={handleClose} />

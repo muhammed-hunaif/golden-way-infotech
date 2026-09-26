@@ -1,8 +1,8 @@
 import { MapPin, Phone, Printer } from 'lucide-react';
-import { scrollToSection } from '@/lib/scroll';
 import { SITE } from '@/config/site';
-import { FOOTER_COLUMNS, NAV_LINKS } from '@/config/navigation';
+import { FOOTER_COLUMNS, NAV_LINKS, ROUTES } from '@/config/navigation';
 import Logo from '@/components/common/Logo';
+import AppLink from '@/components/common/AppLink';
 
 const currentYear = new Date().getFullYear();
 
@@ -14,24 +14,24 @@ const currentYear = new Date().getFullYear();
  * keeping the premium dark note the design calls for.
  */
 export default function Footer() {
-  const handleNavClick = (event, href) => {
-    if (!href.startsWith('#')) return;
-    event.preventDefault();
-    scrollToSection(href);
-  };
-
   return (
-    <footer className="relative overflow-hidden bg-cream text-ink">
+    <footer data-nav-tone="light" className="relative overflow-hidden bg-cream text-ink">
       <div className="hairline" aria-hidden="true" />
 
       <div className="container py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_2fr] lg:gap-16">
           {/* Brand block */}
           <div>
-            {/* Matches the navbar's `sm:h-16` so the lockup is one size across
+            {/* Matches the navbar's `sm:h-20` so the lockup is one size across
                 the site. Note this is past what the 395 x 100 artwork can hold
                 sharp on a retina screen — see src/assets/README.md. */}
-            <Logo markClassName="h-14 w-auto sm:h-16" />
+            <AppLink
+              to={ROUTES.home}
+              className="inline-flex rounded-sm"
+              aria-label="Golden Way Infotech LLC, home"
+            >
+              <Logo markClassName="h-16 w-auto sm:h-20" />
+            </AppLink>
 
             <p className="mt-7 font-caps text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-gold-700">
               {SITE.tagline}
@@ -73,18 +73,16 @@ export default function Footer() {
             {FOOTER_COLUMNS.map((column) => (
               <nav key={column.title} aria-label={column.title}>
                 <h2 className="label-caps text-night">{column.title}</h2>
-                <span className="mt-3 block h-px w-8 bg-gold-500" aria-hidden="true" />
 
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-4 space-y-3">
                   {column.links.map((link) => (
                     <li key={link.label}>
-                      <a
-                        href={link.href}
-                        onClick={(event) => handleNavClick(event, link.href)}
+                      <AppLink
+                        to={link.to}
                         className="text-[0.8125rem] text-ink-soft transition-colors duration-400 ease-premium hover:text-gold-700"
                       >
                         {link.label}
-                      </a>
+                      </AppLink>
                     </li>
                   ))}
                 </ul>
@@ -93,17 +91,15 @@ export default function Footer() {
 
             <nav aria-label="Contact">
               <h2 className="label-caps text-night">Contact</h2>
-              <span className="mt-3 block h-px w-8 bg-gold-500" aria-hidden="true" />
 
-              <ul className="mt-5 space-y-3 text-[0.8125rem] text-ink-soft">
+              <ul className="mt-4 space-y-3 text-[0.8125rem] text-ink-soft">
                 <li>
-                  <a
-                    href="#contact"
-                    onClick={(event) => handleNavClick(event, '#contact')}
+                  <AppLink
+                    to={ROUTES.contact}
                     className="transition-colors duration-400 ease-premium hover:text-gold-700"
                   >
                     Send an Enquiry
-                  </a>
+                  </AppLink>
                 </li>
                 <li>
                   <a
@@ -133,24 +129,31 @@ export default function Footer() {
       </div>
 
       {/* Legal bar — the dark note the palette calls for. */}
-      <div className="bg-night text-white/45">
+      <div data-nav-tone="dark" className="bg-night text-white/45">
         <div className="container flex flex-col items-center justify-between gap-4 py-6 text-center md:flex-row md:text-left">
           <p className="text-[0.75rem]">
             © {currentYear} {SITE.legalName}. All rights reserved.
           </p>
 
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {NAV_LINKS.slice(0, 5).map((link) => (
+            {NAV_LINKS.map((link) => (
               <li key={link.id}>
-                <a
-                  href={link.href}
-                  onClick={(event) => handleNavClick(event, link.href)}
+                <AppLink
+                  to={link.to}
                   className="text-[0.75rem] transition-colors duration-400 hover:text-gold-300"
                 >
                   {link.label}
-                </a>
+                </AppLink>
               </li>
             ))}
+            <li>
+              <AppLink
+                to={ROUTES.contact}
+                className="text-[0.75rem] transition-colors duration-400 hover:text-gold-300"
+              >
+                Contact
+              </AppLink>
+            </li>
           </ul>
 
           <p className="font-caps text-[0.6875rem] uppercase tracking-[0.14em]">

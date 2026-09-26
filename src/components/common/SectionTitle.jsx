@@ -1,7 +1,7 @@
 import { cn } from '@/lib/cn';
 
 /**
- * Standard section heading block: gold rule + eyebrow, display heading, lead copy.
+ * Standard section heading block: eyebrow, display heading, lead copy.
  * `tone` switches the palette for dark sections; `align` handles centred layouts.
  */
 export default function SectionTitle({

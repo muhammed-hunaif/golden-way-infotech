@@ -1,48 +1,59 @@
 /**
- * Primary navigation. `href` values map to section ids on the single-page site.
+ * Route map and primary navigation.
  *
- * Top-level items are kept few; everything else hangs off them in a dropdown, so
- * the bar stays quiet while the whole page is still one click away. Home is the
- * logo and Contact is the "Let's Talk" button, so neither needs a link here.
+ * The site is six routes. Anything that lives inside a route is reached by a
+ * `/path#section` target: the dropdown and footer link straight to a section on
+ * another page, and <AppLink> decides whether that is a page change or a scroll.
+ *
+ * Home is the logo, so it needs no top-level entry here.
  */
+export const ROUTES = {
+  home: '/',
+  about: '/about',
+  services: '/services',
+  technology: '/technology',
+  training: '/training',
+  contact: '/contact',
+};
+
 export const NAV_LINKS = [
   {
-    id: 'about',
-    label: 'About',
-    href: '#about',
+    id: 'company',
+    label: 'Company',
+    to: ROUTES.about,
+    intro:
+      'A Dubai-headquartered technology and training company, delivering since 2012 across four hubs and 30+ countries.',
     children: [
-      { id: 'about', label: 'About Us', href: '#about', hint: 'Who we are' },
+      { label: 'About Us', to: ROUTES.about, hint: 'Who we are' },
       {
-        id: 'vision-mission',
         label: 'Vision & Mission',
-        href: '#vision-mission',
+        to: `${ROUTES.about}#vision-mission`,
         hint: 'What we are building toward',
       },
-      { id: 'why-us', label: 'Why Choose Us', href: '#why-us', hint: 'Six reasons' },
       {
-        id: 'global-presence',
         label: 'Global Presence',
-        href: '#global-presence',
+        to: `${ROUTES.about}#global-presence`,
         hint: 'Four hubs, 30+ countries',
       },
+      { label: 'Why Choose Us', to: `${ROUTES.about}#why-us`, hint: 'Ten reasons' },
     ],
   },
   {
     id: 'services',
     label: 'Services',
-    href: '#services',
+    to: ROUTES.services,
+    intro:
+      'Software, cloud, cybersecurity, AI and design solutions, each shaped around the business it serves.',
     children: [
-      { id: 'services', label: 'All Services', href: '#services', hint: '17 capability areas' },
+      { label: 'All Services', to: ROUTES.services, hint: '17 capability areas' },
       {
-        id: 'emerging-technologies',
         label: 'Emerging Technologies',
-        href: '#emerging-technologies',
+        to: `${ROUTES.services}#emerging-technologies`,
         hint: 'AI, ML, data science, analytics',
       },
       {
-        id: 'web-development',
         label: 'Website Development',
-        href: '#web-development',
+        to: `${ROUTES.services}#web-development`,
         hint: 'Build and maintenance',
       },
     ],
@@ -50,75 +61,64 @@ export const NAV_LINKS = [
   {
     id: 'technology',
     label: 'Technology',
-    href: '#technology',
+    to: ROUTES.technology,
+    intro:
+      'The working stack behind every engagement, and the approach that takes a project from brief to launch.',
     children: [
       {
-        id: 'technology',
         label: 'Core Technology Stack',
-        href: '#technology',
+        to: `${ROUTES.technology}#technology`,
         hint: 'The working stack',
       },
-      { id: 'approach', label: 'Our Approach', href: '#approach', hint: 'How engagements run' },
+      { label: 'Our Approach', to: `${ROUTES.technology}#approach`, hint: 'How engagements run' },
     ],
   },
-  { id: 'training', label: 'Training', href: '#training' },
+  { id: 'training', label: 'Training', to: ROUTES.training },
+  { id: 'contact', label: 'Contact', to: ROUTES.contact },
 ];
-
-/** Every section id the navigation can highlight, parents and children alike. */
-export const NAV_SECTION_IDS = [
-  ...new Set(NAV_LINKS.flatMap((link) => [link.id, ...(link.children ?? []).map((c) => c.id)])),
-];
-
-/** True when a top-level item, or anything inside its dropdown, is in view. */
-export function isNavItemActive(link, activeId) {
-  if (link.id === activeId) return true;
-  return (link.children ?? []).some((child) => child.id === activeId);
-}
 
 export const FOOTER_COLUMNS = [
   {
     title: 'Company',
     links: [
-      { label: 'About Us', href: '#about' },
-      { label: 'Vision & Mission', href: '#vision-mission' },
-      { label: 'Our Approach', href: '#approach' },
-      { label: 'Why Choose Us', href: '#why-us' },
+      { label: 'About Us', to: ROUTES.about },
+      { label: 'Vision & Mission', to: `${ROUTES.about}#vision-mission` },
+      { label: 'Global Presence', to: `${ROUTES.about}#global-presence` },
+      { label: 'Why Choose Us', to: `${ROUTES.about}#why-us` },
     ],
   },
   {
     title: 'Services',
     links: [
-      { label: 'Software & Web', href: '#services' },
-      { label: 'Database Technologies', href: '#services' },
-      { label: 'Cloud & Security', href: '#services' },
-      { label: 'Design & Creative', href: '#services' },
-      { label: 'Marketing & Growth', href: '#services' },
+      { label: 'All Services', to: ROUTES.services },
+      { label: 'Emerging Technologies', to: `${ROUTES.services}#emerging-technologies` },
+      { label: 'Website Development', to: `${ROUTES.services}#web-development` },
+      { label: 'Design & Creative', to: ROUTES.services },
+      { label: 'Marketing & Growth', to: ROUTES.services },
     ],
   },
   {
     title: 'Technology',
     links: [
-      { label: 'Core Technology Stack', href: '#technology' },
-      { label: 'Emerging Technologies', href: '#emerging-technologies' },
-      { label: 'Website Development', href: '#web-development' },
-      { label: 'Mobility & Web Approach', href: '#approach' },
+      { label: 'Core Technology Stack', to: `${ROUTES.technology}#technology` },
+      { label: 'Our Approach', to: `${ROUTES.technology}#approach` },
     ],
   },
   {
     title: 'Training',
     links: [
-      { label: 'Learn Through Real Projects', href: '#training' },
-      { label: 'Talent Development Hub', href: '#global-presence' },
-      { label: 'Training Enquiries', href: '#contact' },
+      { label: 'Learn Through Real Projects', to: ROUTES.training },
+      { label: 'Talent Development Hub', to: `${ROUTES.about}#global-presence` },
+      { label: 'Training Enquiries', to: ROUTES.contact },
     ],
   },
   {
     title: 'Locations',
     links: [
-      { label: 'Dubai · Near JAFZA', href: '#global-presence' },
-      { label: 'Chennai · Near Tidel Park', href: '#global-presence' },
-      { label: 'Bangalore · Near Gandhi Nagar', href: '#global-presence' },
-      { label: 'Kochi · Near IT Park', href: '#global-presence' },
+      { label: 'Dubai · Head Office', to: `${ROUTES.about}#global-presence` },
+      { label: 'Chennai, Tamil Nadu', to: `${ROUTES.about}#global-presence` },
+      { label: 'Bangalore, Karnataka', to: `${ROUTES.about}#global-presence` },
+      { label: 'Kochi, Kerala', to: `${ROUTES.about}#global-presence` },
     ],
   },
 ];

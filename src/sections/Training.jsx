@@ -3,6 +3,7 @@ import { TRAINING_AUDIENCE, TRAINING_INTRO, TRAINING_PILLARS } from '@/data/trai
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
 import Button from '@/components/common/Button';
+import { ROUTES } from '@/config/navigation';
 
 /**
  * Training positioning. Everything stated here comes from the company profile —
@@ -56,7 +57,7 @@ export default function Training() {
           </div>
 
           <div className="mt-8" data-reveal>
-            <Button href="#contact" variant="outlineDark" size="md">
+            <Button to={ROUTES.contact} variant="outlineDark" size="md">
               Training Enquiries
             </Button>
           </div>

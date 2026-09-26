@@ -20,7 +20,7 @@ function ServiceCard({ service, onSelect }) {
     <button
       type="button"
       onClick={() => onSelect(service)}
-      aria-label={`${name} — read the full description`}
+      aria-label={`${name}: read the full description`}
       className="group flex h-full w-full flex-col border-l border-t border-black/[0.08] bg-white p-7 text-left transition-colors duration-400 ease-premium hover:bg-cream md:p-8"
     >
       {/* The icon carries its own weight in gold; the bordered badge around it

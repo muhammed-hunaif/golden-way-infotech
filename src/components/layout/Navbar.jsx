@@ -1,28 +1,33 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/cn';
-import { scrollToSection } from '@/lib/scroll';
-import { NAV_LINKS, NAV_SECTION_IDS, isNavItemActive } from '@/config/navigation';
-import { useScrollPosition } from '@/hooks/useScrollPosition';
-import { useActiveSection } from '@/hooks/useActiveSection';
+import { NAV_LINKS, ROUTES } from '@/config/navigation';
+import { isSamePage } from '@/lib/routes';
+import { useNavTone } from '@/hooks/useNavTone';
 import Logo from '@/components/common/Logo';
-import Button from '@/components/common/Button';
+import AppLink from '@/components/common/AppLink';
 import NavDropdown from '@/components/layout/NavDropdown';
 import MobileMenu from '@/components/layout/MobileMenu';
 
 /**
  * Fixed site header.
  *
- * The bar is a light surface at every scroll position, because the brand lockup
- * carries a dark-ink strapline that needs a light ground.
+ * Always see-through: no background at any scroll position, by design. Instead
+ * the colours follow the section behind the bar (see useNavTone): over a dark
+ * section the links are white and the logo's strapline white; over a light
+ * section the links are dark and the logo shows its original dark strapline.
  *
- * Its height is fixed. Scrolling firms up the surface — whiter ground, a shadow,
- * a quieter border — but never resizes the bar or the logo: a lockup that shrinks
- * as you scroll draws attention to itself at exactly the moment the page content
- * should have it.
+ * Its height is fixed and it never resizes the bar or the logo: a lockup that
+ * shrinks as you scroll draws attention to itself at exactly the moment the page
+ * content should have it.
+ *
+ * Active state comes from the route, not from what is on screen. On a six-page
+ * site the bar's job is to say which page you are on; a scroll-spy would move the
+ * highlight around while the answer to that question never changed.
  */
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isScrolled = useScrollPosition(48);
+  const location = useLocation();
 
   // The menu panel opens directly beneath the bar, so it needs the bar's height.
   // Measured rather than hardcoded: the bar no longer resizes on scroll, but it
@@ -42,13 +47,10 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // NAV_SECTION_IDS is a module constant, so its identity is already stable.
-  const activeId = useActiveSection(NAV_SECTION_IDS);
-
-  const handleNavClick = useCallback((event, href) => {
-    event.preventDefault();
-    scrollToSection(href);
-  }, []);
+  // The mobile menu is a dark sheet under the bar, so while it is open the bar
+  // keeps its dark-ground colours whatever section is behind it.
+  const navTone = useNavTone(headerRef, location.pathname);
+  const isLight = navTone === 'light' && !isMenuOpen;
 
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
@@ -61,39 +63,33 @@ export default function Navbar() {
         Skip to main content
       </a>
 
-      {/* The bar stays light at every scroll position: the logo's strapline is
-          dark ink, so it needs a light ground to stay legible.
-
-          `py-2` is as tight as the bar goes while the logo stays at `h-16`: the
-          height is the logo plus this padding, so with the lockup fixed, padding
-          is the only lever. It sits outside the conditional because the bar's
-          height must not change on scroll — only its surface does, cream warming
-          to white with a shadow once there is content behind it. */}
       <header
         ref={headerRef}
-        className={cn(
-          'fixed inset-x-0 top-0 z-50 border-b py-2 transition-all duration-500 ease-premium',
-          isScrolled
-            ? 'border-black/[0.07] bg-white/95 shadow-subtle backdrop-blur-xl'
-            : 'border-gold-500/20 bg-cream/95 backdrop-blur-xl',
-        )}
+        className="site-header fixed inset-x-0 top-0 z-50 bg-transparent py-2"
       >
-        <nav className="container flex items-center justify-between gap-6" aria-label="Primary">
-          <a
-            href="#home"
-            onClick={(event) => handleNavClick(event, '#home')}
+        <nav
+          className="container relative flex items-center justify-between gap-6"
+          aria-label="Primary"
+        >
+          <AppLink
+            to={ROUTES.home}
             className="shrink-0 rounded-sm"
-            aria-label="Golden Way Infotech LLC — back to top"
+            aria-label="Golden Way Infotech LLC, home"
           >
-            {/* One size, always — nothing here is scroll-dependent. Mobile stays
-                at h-12: at h-16 the lockup is 253px wide, which leaves no room
-                for the hamburger on a 360px screen. */}
-            <Logo priority markClassName="h-12 w-auto sm:h-16" />
-          </a>
+            {/* Mobile stays at h-14: at h-20 the lockup is 316px wide, which
+                leaves no room for the hamburger on a 360px screen. Over dark
+                sections it uses the knockout artwork (strapline in white), over
+                light ones the original. */}
+            <Logo
+              priority
+              tone={isLight ? 'light' : 'dark'}
+              markClassName="h-14 w-auto sm:h-20"
+            />
+          </AppLink>
 
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-8 lg:flex xl:gap-10">
             {NAV_LINKS.map((link) => {
-              const isActive = isNavItemActive(link, activeId);
+              const isActive = isSamePage(link.to, location.pathname);
 
               if (link.children) {
                 return (
@@ -101,42 +97,42 @@ export default function Navbar() {
                     key={link.id}
                     link={link}
                     isActive={isActive}
-                    activeId={activeId}
-                    onNavigate={handleNavClick}
+                    location={location}
+                    isLight={isLight}
                   />
                 );
               }
 
               return (
                 <li key={link.id}>
-                  <a
-                    href={link.href}
-                    onClick={(event) => handleNavClick(event, link.href)}
-                    aria-current={isActive ? 'true' : undefined}
+                  <AppLink
+                    to={link.to}
+                    aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'relative block rounded-sm px-3.5 py-2 text-[0.875rem] font-bold transition-colors duration-400 ease-premium hover:text-gold-700 xl:px-4',
-                      isActive ? 'text-gold-700' : 'text-ink-soft',
+                      'group relative block py-4 text-base font-medium transition-colors duration-300',
+                      isLight
+                        ? cn('hover:text-gold-700', isActive ? 'text-gold-700' : 'text-night')
+                        : 'text-white',
                     )}
                   >
                     {link.label}
                     <span
                       className={cn(
-                        'absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-gold-500 transition-transform duration-500 ease-premium xl:inset-x-4',
-                        isActive ? 'scale-x-100' : 'scale-x-0',
+                        'absolute inset-x-0 bottom-2 h-0.5 transition-all duration-300',
+                        isLight ? 'bg-gold-500' : 'bg-white',
+                        isActive
+                          ? 'translate-y-0 opacity-100'
+                          : 'translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100',
                       )}
                       aria-hidden="true"
                     />
-                  </a>
+                  </AppLink>
                 </li>
               );
             })}
           </ul>
 
-          <div className="flex items-center gap-3">
-            <Button href="#contact" variant="primary" size="sm" className="hidden sm:inline-flex">
-              Let&apos;s Talk
-            </Button>
-
+          <div className="flex items-center gap-3 lg:hidden">
             {/* Two bars — one full width, one half — that toggle into an X.
                 Opening squares the short bar up to full width so the X is
                 symmetrical. Bars sit at 1px and 9px, so 4px centres them. */}
@@ -146,7 +142,10 @@ export default function Navbar() {
               aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
-              className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm text-night transition-colors duration-400 ease-premium hover:text-gold-700 lg:hidden"
+              className={cn(
+                '-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm transition-colors duration-300 lg:hidden',
+                isLight ? 'text-night hover:text-gold-700' : 'text-white',
+              )}
             >
               <span className="flex w-6 flex-col gap-y-1.5" aria-hidden="true">
                 <span
@@ -170,7 +169,7 @@ export default function Navbar() {
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={closeMenu}
-        activeId={activeId}
+        location={location}
         offsetTop={headerHeight}
       />
     </>

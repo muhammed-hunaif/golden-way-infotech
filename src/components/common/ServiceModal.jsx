@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import Button from '@/components/common/Button';
+import { ROUTES } from '@/config/navigation';
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -112,8 +113,7 @@ export default function ServiceModal({ service, onClose }) {
         </div>
 
         <div className="px-6 py-7 md:px-9 md:py-9">
-          <p className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold text-gold-700">
-            <span className="h-px w-5 bg-gold-500" aria-hidden="true" />
+          <p className="text-[0.8125rem] font-semibold text-gold-700">
             {keyPoint}
           </p>
 
@@ -121,7 +121,7 @@ export default function ServiceModal({ service, onClose }) {
 
           <div className="mt-9 flex flex-col gap-3 border-t border-black/[0.07] pt-7 sm:flex-row">
             <Button
-              href="#contact"
+              to={ROUTES.contact}
               variant="primary"
               size="md"
               onClick={onClose}

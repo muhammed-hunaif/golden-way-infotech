@@ -19,7 +19,7 @@ export default function TechnologyStack() {
             <span className="text-gradient-gold"> every engagement.</span>
           </>
         }
-        description="Application logic, structured enterprise data, and responsive browser interfaces — the layers the company profile names as its working stack."
+        description="Application logic, structured enterprise data, and responsive browser interfaces: the layers the company profile names as its working stack."
       />
 
       <div className="mt-14 grid gap-6 lg:grid-cols-3">

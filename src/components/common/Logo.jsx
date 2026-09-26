@@ -71,7 +71,7 @@ function Logo({ className, markClassName, priority = false, tone = 'light' }) {
     <span className={cn('inline-flex select-none items-center', className)}>
       <img
         src={src}
-        alt="Golden Way Infotech LLC — Mobility Solutions For Your Business"
+        alt="Golden Way Infotech LLC, Mobility Solutions For Your Business"
         width={ASPECT_W}
         height={ASPECT_H}
         loading={priority ? 'eager' : 'lazy'}

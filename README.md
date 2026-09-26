@@ -1,8 +1,15 @@
 # Golden Way Infotech LLC — Corporate Website
 
-Frontend for the Golden Way Infotech LLC corporate site: a single-page React
-application built with Vite, Tailwind CSS, GSAP (with ScrollTrigger), and Lucide
-icons.
+Frontend for the Golden Way Infotech LLC corporate site: a six-page React
+application built with Vite, React Router, Tailwind CSS, GSAP (with
+ScrollTrigger), and Lucide icons.
+
+The routes are `/`, `/about`, `/services`, `/technology`, `/training` and
+`/contact`. Every page is assembled from the same section components, so a
+section can appear on the home page as a summary and on its own page in full —
+`<Services preview />` against `<Services />`, `<WhyChooseUs limit={6} />`
+against `<WhyChooseUs />`. Deep links such as `/about#why-us` are ordinary
+navigation targets.
 
 **Frontend only.** There is no backend, database, API layer, or authentication.
 The enquiry form validates in the browser and shows a local confirmation state —
@@ -68,9 +75,21 @@ Requires Node 20.19+ (Vite 8).
 │   │       ├── Footer.jsx
 │   │       ├── MobileMenu.jsx
 │   │       ├── Navbar.jsx
+│   │       ├── NavDropdown.jsx
+│   │       ├── PageBanner.jsx      Inner-page header + breadcrumb
+│   │       ├── RouteScroll.jsx     Scroll restoration on route change
 │   │       └── ScrollToTop.jsx
 │   │
-│   ├── sections/               One file per page section, composed by App.jsx
+│   ├── pages/                  One file per route, composed of sections
+│   │   ├── Home.jsx
+│   │   ├── AboutPage.jsx
+│   │   ├── ServicesPage.jsx
+│   │   ├── TechnologyPage.jsx
+│   │   ├── TrainingPage.jsx
+│   │   ├── ContactPage.jsx
+│   │   └── NotFound.jsx
+│   │
+│   ├── sections/               One file per section, composed by pages/
 │   │   ├── Hero.jsx
 │   │   ├── Stats.jsx
 │   │   ├── About.jsx
@@ -102,23 +121,24 @@ Requires Node 20.19+ (Vite 8).
 │   │   └── site.js
 │   │
 │   ├── hooks/                  Reusable behaviour
-│   │   ├── useActiveSection.js     Highlights the section in view
 │   │   ├── useCountUp.js           Number counter on scroll
 │   │   ├── useGsapReveal.js        Section-scoped scroll reveal
 │   │   ├── useLockBodyScroll.js    Scroll lock for overlays
+│   │   ├── usePageMeta.js          Per-route <title> and description
 │   │   └── useScrollPosition.js    rAF-throttled scroll threshold
 │   │
 │   ├── lib/                    Framework-agnostic helpers
 │   │   ├── cn.js               className joiner
 │   │   ├── gsap.js             Single GSAP/ScrollTrigger registration point
+│   │   ├── routes.js           Splits `/path#section` link targets
 │   │   ├── scroll.js           Offset-aware smooth scrolling
 │   │   └── validation.js       Enquiry form validation rules
 │   │
 │   ├── styles/
 │   │   └── index.css           Tailwind layers, base styles, component classes
 │   │
-│   ├── App.jsx                 Section composition
-│   └── main.jsx                Entry point
+│   ├── App.jsx                 Routes and the persistent shell
+│   └── main.jsx                Entry point, mounts BrowserRouter
 │
 ├── index.html                  Document shell, meta tags, font preconnect
 ├── tailwind.config.js          Design tokens (colour, type, shadow, motion)
@@ -136,6 +156,13 @@ Requires Node 20.19+ (Vite 8).
   piece would be used in two sections, it belongs in `components/`.
 - **One GSAP registration point.** Everything imports `gsap` and `ScrollTrigger`
   from `@/lib/gsap`, so plugins register exactly once.
+- **Internal links go through `<AppLink to="...">`,** or `<Button to="...">`.
+  Targets are written as `/path` or `/path#section`; a section on the page
+  already open becomes a scroll instead of a navigation. Plain `<a href>` is
+  reserved for `tel:`, `mailto:` and external sites.
+- **Deep links need a server fallback.** Every route must serve `index.html`, or
+  a refresh on `/about` returns a 404. `vite dev` and `vite preview` do this
+  already; a static host needs its own rewrite rule.
 
 ---
 

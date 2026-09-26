@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { cn } from '@/lib/cn';
-import { scrollToSection } from '@/lib/scroll';
+import AppLink from '@/components/common/AppLink';
 
 const BASE =
   'group inline-flex items-center justify-center gap-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-400 ease-premium disabled:cursor-not-allowed disabled:opacity-55';
@@ -29,14 +29,17 @@ const SIZES = {
 
 /**
  * One button primitive for the whole site.
- * Renders a <button> by default, or an <a> when `href` is supplied. In-page
- * hashes are intercepted for offset-aware smooth scrolling.
+ *
+ * Renders a <button> by default, an <AppLink> when `to` is supplied — the site's
+ * own routes and sections — and a plain <a> when `href` is, which is reserved for
+ * targets outside the app: `tel:`, `mailto:` and external sites.
  */
 const Button = forwardRef(function Button(
   {
     children,
     variant = 'primary',
     size = 'md',
+    to,
     href,
     className,
     icon: Icon,
@@ -64,26 +67,27 @@ const Button = forwardRef(function Button(
       )}
 
       <span>{children}</span>
+
+      {Icon && iconPosition === 'right' && (
+        <Icon
+          className="h-4 w-4 shrink-0 transition-transform duration-400 ease-premium group-hover:translate-x-0.5"
+          aria-hidden="true"
+        />
+      )}
     </>
   );
 
-  if (href) {
-    const isInPage = href.startsWith('#');
-
+  if (to) {
     return (
-      <a
-        ref={ref}
-        href={href}
-        className={classes}
-        onClick={(event) => {
-          if (isInPage) {
-            event.preventDefault();
-            scrollToSection(href);
-          }
-          onClick?.(event);
-        }}
-        {...props}
-      >
+      <AppLink ref={ref} to={to} className={classes} onClick={onClick} {...props}>
+        {content}
+      </AppLink>
+    );
+  }
+
+  if (href) {
+    return (
+      <a ref={ref} href={href} className={classes} onClick={onClick} {...props}>
         {content}
       </a>
     );

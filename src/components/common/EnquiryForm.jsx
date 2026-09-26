@@ -76,7 +76,7 @@ export default function EnquiryForm() {
         </h3>
         <p className="mt-4 max-w-md text-[0.9375rem] leading-[1.85] text-ink-soft">
           Your enquiry details have been captured in this form. This website is a frontend
-          demonstration, so nothing has been transmitted — please use the head office telephone
+          demonstration, so nothing has been transmitted. Please use the head office telephone
           number listed alongside to reach the team directly.
         </p>
 

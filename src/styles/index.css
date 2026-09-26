@@ -8,10 +8,10 @@
     --color-gold-highlight: #d4af37;
     --color-gold-dark: #8a641c;
     /* Drives `scroll-padding-top`, so it must track the real bar: `py-2` top and
-       bottom (1rem) plus the `sm:h-16` logo (4rem). Update this whenever the bar
+       bottom (1rem) plus the `sm:h-20` logo (5rem). Update this whenever the bar
        padding or logo size in `Navbar.jsx` changes, or anchored sections land
        under it. `scroll-mt-*` on <Section> carries the same figure. */
-    --nav-height: 5rem;
+    --nav-height: 6rem;
   }
 
   * {
@@ -36,12 +36,10 @@
   h4,
   h5,
   h6 {
-    /* Regular — one heading weight for the whole site. Pliant is a sans, so
-       400 reads lighter here than the serif it replaced did; raise this to
-       font-medium if headings need more presence. This is the single lever:
-       change it here and every heading follows, unless a component sets its own
-       weight (none currently do). */
-    @apply font-display font-normal text-night;
+    /* Semibold — one heading weight for the whole site, matching the
+       Gilroy-style bold headings. This is the single lever: change it here and
+       every heading follows, unless a component sets its own weight. */
+    @apply font-display font-semibold text-night;
     text-wrap: balance;
   }
 
@@ -60,7 +58,8 @@
      keep the white offset above. */
   .bg-night :focus-visible,
   .bg-charcoal :focus-visible,
-  .bg-night-gradient :focus-visible {
+  .bg-night-gradient :focus-visible,
+  .site-header :focus-visible {
     @apply ring-offset-night;
   }
 
@@ -143,11 +142,6 @@
 
   .card-surface-dark {
     @apply rounded-sm border border-white/10 bg-charcoal-light/60 transition-all duration-500 ease-premium;
-  }
-
-  /* Thin gold rule used above section titles. */
-  .rule-gold {
-    @apply block h-px w-10 bg-gold-500;
   }
 
   /* The gold emphasis. Used on the closing phrase of a section heading and on

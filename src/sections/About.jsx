@@ -2,6 +2,7 @@ import { Building2, GraduationCap, Layers, Users } from 'lucide-react';
 import Section from '@/components/common/Section';
 import SectionTitle from '@/components/common/SectionTitle';
 import Button from '@/components/common/Button';
+import { ROUTES } from '@/config/navigation';
 
 const HIGHLIGHTS = [
   {
@@ -32,9 +33,14 @@ const HIGHLIGHTS = [
   },
 ];
 
-export default function About() {
+/**
+ * `cta` is on only where the section is a summary of a page elsewhere — the
+ * home page. On the About page itself the section is the destination, so the
+ * button would point at the page it already sits on.
+ */
+export default function About({ cta = false, tone = 'cream' }) {
   return (
-    <Section id="about" tone="cream" ariaLabel="About Golden Way Infotech">
+    <Section id="about" tone={tone} ariaLabel="About Golden Way Infotech">
       {/* Single column. With the visual gone there is no second column to
           balance, so the copy runs the full measure rather than being left
           stranded in half a grid. */}
@@ -75,11 +81,13 @@ export default function About() {
           ))}
         </ul>
 
-        <div className="mt-10" data-reveal>
-          <Button href="#why-us" variant="outlineDark" size="md">
-            Learn More
-          </Button>
-        </div>
+        {cta && (
+          <div className="mt-10" data-reveal>
+            <Button to={ROUTES.about} variant="outlineDark" size="md">
+              More About Golden Way
+            </Button>
+          </div>
+        )}
       </div>
     </Section>
   );

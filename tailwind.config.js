@@ -47,17 +47,18 @@ export default {
         cream: '#F8F7F3',
       },
       fontFamily: {
-        // DM Sans is the workhorse: body copy, navigation, buttons, form fields.
-        sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Pliant carries the brand voice — headings, the eyebrow, and its italic
-        // for the accents and pull quotes. It is a sans, so the contrast against
-        // DM Sans is one of character and weight rather than serif against sans.
-        display: ['"Pliant"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Plus Jakarta Sans (free stand-in for Gilroy) is used for everything:
+        // body copy, navigation, buttons, form fields.
+        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Same family for the brand voice — headings, the eyebrow, and its italic
+        // for the accents and pull quotes. One family throughout, so contrast comes
+        // from weight and italic alone.
+        display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Kept as a separate token from `display` so the tracked-caps label voice
         // can be changed on its own later.
-        caps: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        caps: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
-      // Sized for Pliant. A sans has no hairline strokes to collapse, so the
+      // Sized for Plus Jakarta Sans. A sans has no hairline strokes to collapse, so the
       // near-zero tracking the previous serif required is back to the negative
       // values large sans display text wants — without it, headings at these
       // sizes read loose and the words drift apart.
