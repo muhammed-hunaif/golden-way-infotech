@@ -26,14 +26,14 @@ export default function TechnologyStack() {
         {TECHNOLOGY_GROUPS.map((group, index) => (
           <article
             key={group.id}
-            className="card-surface group relative flex flex-col p-8 hover:-translate-y-1 hover:border-gold-400/60 hover:shadow-lift md:p-9"
+            className="card-surface group relative flex flex-col rounded-2xl p-8 hover:-translate-y-1 hover:border-gold-400/60 hover:shadow-lift md:p-9"
             data-reveal
           >
             <span className="display-accent text-[0.8125rem] text-gold-500" aria-hidden="true">
               {String(index + 1).padStart(2, '0')}
             </span>
 
-            <h3 className="mt-4 font-display text-[1.375rem] font-normal leading-snug text-night">
+            <h3 className="mt-4 font-display text-[1.375rem] font-semibold leading-snug text-night">
               {group.title}
             </h3>
             <p className="mt-2 font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-ink-muted">
@@ -46,7 +46,7 @@ export default function TechnologyStack() {
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-sm border border-gold-500/25 bg-gold-50/60 px-3 py-1.5 text-[0.8125rem] font-medium text-gold-800 transition-colors duration-500 ease-premium group-hover:border-gold-500/40"
+                  className="rounded-full border border-gold-500/25 bg-gold-50/60 px-3.5 py-1.5 text-[0.8125rem] font-medium text-gold-800 transition-colors duration-500 ease-premium group-hover:border-gold-500/40"
                 >
                   {item}
                 </li>
@@ -70,7 +70,7 @@ export default function TechnologyStack() {
                 key={`${tech.name}-${index}`}
                 className="group/item flex shrink-0 items-baseline gap-3 whitespace-nowrap"
               >
-                <span className="font-display text-[1.25rem] font-normal text-black/25 transition-colors duration-500 group-hover/item:text-gold-700 md:text-[1.5rem]">
+                <span className="font-display text-[1.25rem] font-semibold text-black/25 transition-colors duration-500 group-hover/item:text-gold-700 md:text-[1.5rem]">
                   {tech.name}
                 </span>
                 {/* Where it is applied. Set well below the name so the strip

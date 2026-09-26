@@ -1,0 +1,117 @@
+/* Manrope, self-hosted. Declarations from the supplied theme file (Google Fonts
+   css2 for Manrope 200–800); font files live in public/fonts/manrope. */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk59FO_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk6jFO_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk79FO_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk7PFO_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk4jE-_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk4aE-_F.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk59E-_F.ttf) format('truetype');
+}
+
+/* Jost, self-hosted. Declarations from the supplied theme file (Google Fonts
+   css2 for Jost 100–900); font files live in public/fonts/jost. */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7myjJAVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mwjJQVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mz9JQVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7myjJQVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7myRJQVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mx9IgVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mxEIgVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mwjIgVG.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mwKIgVG.ttf) format('truetype');
+}

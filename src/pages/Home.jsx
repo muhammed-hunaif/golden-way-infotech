@@ -2,7 +2,6 @@ import Hero from '@/sections/Hero';
 import Stats from '@/sections/Stats';
 import Services from '@/sections/Services';
 import About from '@/sections/About';
-import GlobalPresence from '@/sections/GlobalPresence';
 import WhyChooseUs from '@/sections/WhyChooseUs';
 import CTA from '@/sections/CTA';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -28,7 +27,6 @@ export default function Home() {
       <Stats />
       <Services preview />
       <About cta />
-      <GlobalPresence />
       <WhyChooseUs limit={6} />
       <CTA />
     </>

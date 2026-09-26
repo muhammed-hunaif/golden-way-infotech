@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
+import { ArrowDown } from 'lucide-react';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { SITE } from '@/config/site';
 import Button from '@/components/common/Button';
@@ -95,7 +96,7 @@ export default function Hero() {
             {SITE.tagline}
           </p>
 
-          <h1 className="mt-8 text-display-lg font-normal text-white">
+          <h1 className="mt-8 text-display-lg font-bold text-white">
             <span data-hero="line" className="block">
               Building Technology.
             </span>
@@ -123,6 +124,16 @@ export default function Hero() {
               Let&apos;s Talk
             </Button>
           </div>
+
+          {/* A thin scroll cue, after the reference theme's hero. Desktop only:
+              on a phone the next section already shows below the fold. */}
+          <a
+            href="#stats"
+            className="mt-14 hidden h-12 w-8 items-start justify-center text-white/70 transition-colors duration-300 hover:text-gold-300 lg:inline-flex"
+            aria-label="Scroll to company figures"
+          >
+            <ArrowDown className="h-9 w-9 animate-bounce" strokeWidth={1} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>

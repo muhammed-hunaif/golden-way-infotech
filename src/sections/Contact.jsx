@@ -102,7 +102,7 @@ export default function Contact() {
             <p className="font-caps text-[0.6875rem] font-semibold uppercase tracking-[0.24em] text-gold-600">
               Send an Enquiry
             </p>
-            <h3 className="mt-4 font-display text-[1.5rem] font-normal leading-snug text-night md:text-[1.75rem]">
+            <h3 className="mt-4 font-display text-[1.5rem] font-bold leading-snug text-night md:text-[1.75rem]">
               Tell us what you are working on.
             </h3>
             <p className="mt-4 text-[0.875rem] leading-[1.8] text-ink-soft">

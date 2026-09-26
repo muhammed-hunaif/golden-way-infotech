@@ -1,4 +1,5 @@
 import PageBanner from '@/components/layout/PageBanner';
+import contactBanner from '@/assets/contact/contact-banner.jpg';
 import Contact from '@/sections/Contact';
 import CTA from '@/sections/CTA';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -15,6 +16,9 @@ export default function ContactPage() {
       <PageBanner
         eyebrow="Contact"
         watermark="Contact"
+        image={contactBanner}
+        overlay="strong"
+        imagePosition="50% 20%"
         title={
           <>
             The Dubai head office and three India hubs
@@ -25,7 +29,7 @@ export default function ContactPage() {
       />
 
       <Contact />
-      <CTA />
+      <CTA action={false} />
     </>
   );
 }

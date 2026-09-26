@@ -30,11 +30,6 @@ export const NAV_LINKS = [
         to: `${ROUTES.about}#vision-mission`,
         hint: 'What we are building toward',
       },
-      {
-        label: 'Global Presence',
-        to: `${ROUTES.about}#global-presence`,
-        hint: 'Four hubs, 30+ countries',
-      },
       { label: 'Why Choose Us', to: `${ROUTES.about}#why-us`, hint: 'Ten reasons' },
     ],
   },
@@ -83,7 +78,6 @@ export const FOOTER_COLUMNS = [
     links: [
       { label: 'About Us', to: ROUTES.about },
       { label: 'Vision & Mission', to: `${ROUTES.about}#vision-mission` },
-      { label: 'Global Presence', to: `${ROUTES.about}#global-presence` },
       { label: 'Why Choose Us', to: `${ROUTES.about}#why-us` },
     ],
   },
@@ -108,17 +102,8 @@ export const FOOTER_COLUMNS = [
     title: 'Training',
     links: [
       { label: 'Learn Through Real Projects', to: ROUTES.training },
-      { label: 'Talent Development Hub', to: `${ROUTES.about}#global-presence` },
+      { label: 'Talent Development Hub', to: ROUTES.training },
       { label: 'Training Enquiries', to: ROUTES.contact },
-    ],
-  },
-  {
-    title: 'Locations',
-    links: [
-      { label: 'Dubai · Head Office', to: `${ROUTES.about}#global-presence` },
-      { label: 'Chennai, Tamil Nadu', to: `${ROUTES.about}#global-presence` },
-      { label: 'Bangalore, Karnataka', to: `${ROUTES.about}#global-presence` },
-      { label: 'Kochi, Kerala', to: `${ROUTES.about}#global-presence` },
     ],
   },
 ];

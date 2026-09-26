@@ -47,33 +47,30 @@ export default {
         cream: '#F8F7F3',
       },
       fontFamily: {
-        // Plus Jakarta Sans (free stand-in for Gilroy) is used for everything:
-        // body copy, navigation, buttons, form fields.
-        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Same family for the brand voice — headings, the eyebrow, and its italic
-        // for the accents and pull quotes. One family throughout, so contrast comes
-        // from weight and italic alone.
-        display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Kept as a separate token from `display` so the tracked-caps label voice
-        // can be changed on its own later.
-        caps: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Two families, both self-hosted (src/styles/fonts.css), neither with an
+        // italic, so emphasis comes from weight alone.
+        // Manrope: reading text — body copy, descriptions, form fields.
+        sans: ['"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Jost: the brand voice — headings, stats, navigation, buttons.
+        display: ['"Jost"', '"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Jost for the tracked-caps labels (eyebrows, card tags). Kept as its
+        // own token so the label voice can be changed separately.
+        caps: ['"Jost"', '"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
-      // Sized for Plus Jakarta Sans. A sans has no hairline strokes to collapse, so the
-      // near-zero tracking the previous serif required is back to the negative
-      // values large sans display text wants — without it, headings at these
-      // sizes read loose and the words drift apart.
+      // Sized for Jost. Its geometric capitals are narrower than Manrope's, so
+      // headings need only a light negative tracking to hold together.
       fontSize: {
         'display-sm': [
           'clamp(1.75rem, 3.8vw, 2.25rem)',
-          { lineHeight: '1.22', letterSpacing: '-0.012em' },
+          { lineHeight: '1.2', letterSpacing: '-0.01em' },
         ],
         'display-md': [
           'clamp(2rem, 4.8vw, 3rem)',
-          { lineHeight: '1.16', letterSpacing: '-0.018em' },
+          { lineHeight: '1.14', letterSpacing: '-0.015em' },
         ],
         'display-lg': [
           'clamp(2.5rem, 6.2vw, 3.875rem)',
-          { lineHeight: '1.12', letterSpacing: '-0.024em' },
+          { lineHeight: '1.08', letterSpacing: '-0.02em' },
         ],
       },
       letterSpacing: {

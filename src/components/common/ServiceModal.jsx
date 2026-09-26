@@ -95,7 +95,7 @@ export default function ServiceModal({ service, onClose }) {
               </p>
               <h2
                 id="service-modal-title"
-                className="mt-1.5 font-display text-2xl font-normal text-night md:text-[1.75rem]"
+                className="mt-1.5 font-display text-2xl font-bold text-night md:text-[1.75rem]"
               >
                 {name}
               </h2>

@@ -71,7 +71,7 @@ export default function EnquiryForm() {
           <CircleCheckBig className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
         </span>
 
-        <h3 className="mt-7 font-display text-2xl font-normal text-night">
+        <h3 className="mt-7 font-display text-2xl font-bold text-night">
           Thank you, {values.name.trim().split(' ')[0]}.
         </h3>
         <p className="mt-4 max-w-md text-[0.9375rem] leading-[1.85] text-ink-soft">

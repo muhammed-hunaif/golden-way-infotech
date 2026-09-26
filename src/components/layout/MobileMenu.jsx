@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { NAV_LINKS } from '@/config/navigation';
+import { NAV_LINKS, ROUTES } from '@/config/navigation';
 import { isSamePage, splitTo } from '@/lib/routes';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import AppLink from '@/components/common/AppLink';
+import Button from '@/components/common/Button';
 
 /** Matches the panel's 300ms fade, rounded down so the scroll starts as it lands. */
 const CLOSE_DURATION = 280;
@@ -12,9 +13,9 @@ const CLOSE_DURATION = 280;
 /**
  * Navigation panel for tablet and mobile.
  *
- * A full-screen dark sheet that fades in beneath the see-through header, so the
+ * A full-screen white sheet that fades in beneath the white header, so the
  * header's logo and hamburger (animated into an X while open) sit on top of it
- * and close it again. <Navbar /> forces its dark colours while this is open.
+ * and close it again. A gold Contact button closes the list.
  *
  * Items with children are accordions: tapping the row folds its links open
  * beneath it, one group at a time. The group for the current page starts open.
@@ -69,34 +70,25 @@ export default function MobileMenu({ isOpen, onClose, location, offsetTop = 0 })
       inert={!isOpen}
       style={{ paddingTop: offsetTop }}
       className={cn(
-        'fixed inset-0 z-40 flex h-[100dvh] flex-col overflow-y-auto bg-night text-white transition-all duration-300 ease-premium lg:hidden',
+        'fixed inset-0 z-40 flex h-[100dvh] flex-col overflow-y-auto bg-white text-night transition-all duration-300 ease-premium lg:hidden',
         isOpen ? 'visible opacity-100' : 'pointer-events-none invisible opacity-0',
       )}
     >
-      {/* One soft gold glow, the same accent the dark sections use. */}
-      <div
-        className="pointer-events-none absolute -right-32 top-1/3 h-80 w-80 rounded-full opacity-60 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, rgba(184,134,45,0.22) 0%, rgba(17,17,17,0) 70%)',
-        }}
-        aria-hidden="true"
-      />
-
       <nav
         className={cn(
-          'relative flex-1 px-6 pb-10 pt-6 transition-transform duration-300 ease-premium sm:px-8',
+          'relative flex-1 px-6 pb-10 pt-2 transition-transform duration-300 ease-premium sm:px-8',
           isOpen ? 'translate-y-0' : '-translate-y-3',
         )}
         aria-label="Mobile"
       >
-        <ul className="border-t border-white/10">
+        <ul>
           {NAV_LINKS.map((link) => {
             const isActive = isSamePage(link.to, location.pathname);
             const isExpanded = expandedId === link.id;
             const groupId = `mobile-group-${link.id}`;
 
             return (
-              <li key={link.id} className="border-b border-white/10">
+              <li key={link.id} className="border-b border-black/[0.08]">
                 {link.children ? (
                   <button
                     type="button"
@@ -104,15 +96,15 @@ export default function MobileMenu({ isOpen, onClose, location, offsetTop = 0 })
                     aria-expanded={isExpanded}
                     aria-controls={groupId}
                     className={cn(
-                      'flex w-full items-center justify-between gap-4 py-5 text-left text-[1.375rem] font-semibold transition-colors duration-300',
-                      isActive || isExpanded ? 'text-gold-300' : 'text-white',
+                      'flex w-full items-center justify-between gap-4 py-5 text-left font-display text-[1.25rem] font-medium transition-colors duration-300',
+                      isActive || isExpanded ? 'text-gold-700' : 'text-night',
                     )}
                   >
                     {link.label}
                     <ChevronDown
                       className={cn(
                         'h-5 w-5 shrink-0 transition-transform duration-300',
-                        isExpanded ? 'rotate-180 text-gold-300' : 'text-white/60',
+                        isExpanded ? 'rotate-180 text-gold-700' : 'text-night/50',
                       )}
                       aria-hidden="true"
                     />
@@ -124,13 +116,13 @@ export default function MobileMenu({ isOpen, onClose, location, offsetTop = 0 })
                     scrollDelay={CLOSE_DURATION}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'group flex items-center justify-between gap-4 py-5 text-[1.375rem] font-semibold transition-colors duration-300',
-                      isActive ? 'text-gold-300' : 'text-white hover:text-gold-300',
+                      'group flex items-center justify-between gap-4 py-5 font-display text-[1.25rem] font-medium transition-colors duration-300',
+                      isActive ? 'text-gold-700' : 'text-night hover:text-gold-700',
                     )}
                   >
                     {link.label}
                     <ArrowRight
-                      className="h-5 w-5 shrink-0 text-white/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gold-300"
+                      className="h-5 w-5 shrink-0 text-night/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gold-700"
                       aria-hidden="true"
                     />
                   </AppLink>
@@ -163,14 +155,14 @@ export default function MobileMenu({ isOpen, onClose, location, offsetTop = 0 })
                               className={cn(
                                 'flex items-center gap-3 rounded-md px-4 py-3 text-base transition-colors duration-200',
                                 isCurrent
-                                  ? 'bg-white/[0.06] text-gold-300'
-                                  : 'text-white/75 hover:bg-white/[0.04] hover:text-white',
+                                  ? 'bg-gold-50 font-semibold text-gold-700'
+                                  : 'text-ink-soft hover:bg-cream hover:text-night',
                               )}
                             >
                               <span
                                 className={cn(
                                   'h-1.5 w-1.5 shrink-0 rounded-full',
-                                  isCurrent ? 'bg-gold-300' : 'bg-gold-500/60',
+                                  isCurrent ? 'bg-gold-600' : 'bg-gold-500/60',
                                 )}
                                 aria-hidden="true"
                               />
@@ -186,6 +178,17 @@ export default function MobileMenu({ isOpen, onClose, location, offsetTop = 0 })
             );
           })}
         </ul>
+
+        <Button
+          to={ROUTES.contact}
+          onClick={onClose}
+          scrollDelay={CLOSE_DURATION}
+          variant="primary"
+          size="lg"
+          className="mt-8 w-full"
+        >
+          Get in Touch
+        </Button>
       </nav>
     </div>
   );

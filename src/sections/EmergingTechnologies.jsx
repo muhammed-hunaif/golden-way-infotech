@@ -14,7 +14,7 @@ import TrackArrows from '@/components/common/TrackArrows';
  * replacement.
  */
 export default function EmergingTechnologies() {
-  const { trackRef, index, canScroll, scrollByCards } = useScrollTrack();
+  const { trackRef, canScroll, scrollByCards } = useScrollTrack();
 
   return (
     <Section id="emerging-technologies" tone="night" ariaLabel="Emerging technologies">
@@ -31,12 +31,10 @@ export default function EmergingTechnologies() {
           description={EMERGING_INTRO}
         />
 
-        {/* Arrows and a counter beside the title. On phones they drop under
+        {/* Arrows beside the title. On phones they drop under
             it; on desktop they sit on the title's baseline at the right. */}
         <div data-reveal>
           <TrackArrows
-            index={index}
-            total={EMERGING_TECHNOLOGIES.length}
             canScroll={canScroll}
             onStep={scrollByCards}
             noun="technology"
@@ -78,7 +76,7 @@ export default function EmergingTechnologies() {
                 strokeWidth={1.5}
                 aria-hidden="true"
               />
-              <h3 className="mt-5 font-display text-[1.25rem] font-normal text-white">
+              <h3 className="mt-5 font-display text-[1.25rem] font-semibold text-white">
                 {tech.title}
               </h3>
               <p className="mt-2 font-caps text-[0.75rem] font-medium uppercase tracking-[0.12em] text-gold-500/80">

@@ -57,7 +57,7 @@ export const APPLIED_TECHNOLOGIES = [
 ];
 
 /**
- * Marquee strip content — the full technology footprint, each paired with where
+ * Technology tags — the full technology footprint, each paired with where
  * it is actually applied. A name on its own says the company has heard of the
  * technology; the pairing says what it is used for.
  *

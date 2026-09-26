@@ -40,7 +40,7 @@ function LocationCard({ location }) {
         {isHeadOffice ? 'Head Office' : region}
       </p>
 
-      <h3 className="mt-6 font-display text-[2.25rem] font-normal leading-none text-white md:text-[2.5rem]">
+      <h3 className="mt-6 font-display text-[2.25rem] font-bold leading-none text-white md:text-[2.5rem]">
         {city}
       </h3>
       <p className="mt-2 text-[0.875rem] text-white/45">{market}</p>

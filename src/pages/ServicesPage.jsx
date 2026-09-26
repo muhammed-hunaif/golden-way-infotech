@@ -1,4 +1,5 @@
 import PageBanner from '@/components/layout/PageBanner';
+import servicesBanner from '@/assets/services/services-banner.jpg';
 import Services from '@/sections/Services';
 import EmergingTechnologies from '@/sections/EmergingTechnologies';
 import WebDevelopment from '@/sections/WebDevelopment';
@@ -17,6 +18,8 @@ export default function ServicesPage() {
       <PageBanner
         eyebrow="Services"
         watermark="Services"
+        image={servicesBanner}
+        overlay="strong"
         title={
           <>
             Software, cloud, data, design,

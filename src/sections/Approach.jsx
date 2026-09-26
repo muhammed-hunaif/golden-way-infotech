@@ -24,7 +24,7 @@ function Step({ step }) {
       </span>
 
       <div>
-        <h3 className="font-display text-[1.375rem] font-normal leading-snug text-white md:text-[1.625rem]">
+        <h3 className="font-display text-[1.375rem] font-semibold leading-snug text-white md:text-[1.625rem]">
           {/* The visible number is decorative, so the order is restated here for
               anyone listening rather than looking. */}
           <span className="sr-only">{`Step ${step.number}: `}</span>

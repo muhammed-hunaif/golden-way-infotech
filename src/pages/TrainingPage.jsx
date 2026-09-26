@@ -1,4 +1,5 @@
 import PageBanner from '@/components/layout/PageBanner';
+import trainingBanner from '@/assets/training/training-banner.jpg';
 import Training from '@/sections/Training';
 import CTA from '@/sections/CTA';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -15,6 +16,8 @@ export default function TrainingPage() {
       <PageBanner
         eyebrow="Training"
         watermark="Training"
+        image={trainingBanner}
+        overlay="strong"
         title={
           <>
             Taught by the people

@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/cn';
 import { NAV_LINKS, ROUTES } from '@/config/navigation';
 import { isSamePage } from '@/lib/routes';
-import { useNavTone } from '@/hooks/useNavTone';
 import Logo from '@/components/common/Logo';
 import AppLink from '@/components/common/AppLink';
 import NavDropdown from '@/components/layout/NavDropdown';
@@ -12,10 +11,8 @@ import MobileMenu from '@/components/layout/MobileMenu';
 /**
  * Fixed site header.
  *
- * Always see-through: no background at any scroll position, by design. Instead
- * the colours follow the section behind the bar (see useNavTone): over a dark
- * section the links are white and the logo's strapline white; over a light
- * section the links are dark and the logo shows its original dark strapline.
+ * One look at every scroll position and on every page: a solid white bar with
+ * a soft shadow, dark links and the logo's original (dark strapline) artwork.
  *
  * Its height is fixed and it never resizes the bar or the logo: a lockup that
  * shrinks as you scroll draws attention to itself at exactly the moment the page
@@ -30,8 +27,8 @@ export default function Navbar() {
   const location = useLocation();
 
   // The menu panel opens directly beneath the bar, so it needs the bar's height.
-  // Measured rather than hardcoded: the bar no longer resizes on scroll, but it
-  // still reflows when the viewport crosses `sm` and the logo steps up a size.
+  // Measured rather than hardcoded: the bar reflows when the viewport crosses
+  // `sm` and the logo steps up a size.
   const headerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -47,11 +44,6 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // The mobile menu is a dark sheet under the bar, so while it is open the bar
-  // keeps its dark-ground colours whatever section is behind it.
-  const navTone = useNavTone(headerRef, location.pathname);
-  const isLight = navTone === 'light' && !isMenuOpen;
-
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   return (
@@ -65,7 +57,7 @@ export default function Navbar() {
 
       <header
         ref={headerRef}
-        className="site-header fixed inset-x-0 top-0 z-50 bg-transparent py-2"
+        className="site-header fixed inset-x-0 top-0 z-50 border-b border-black/[0.06] bg-white py-2"
       >
         <nav
           className="container relative flex items-center justify-between gap-6"
@@ -76,18 +68,12 @@ export default function Navbar() {
             className="shrink-0 rounded-sm"
             aria-label="Golden Way Infotech LLC, home"
           >
-            {/* Mobile stays at h-14: at h-20 the lockup is 316px wide, which
-                leaves no room for the hamburger on a 360px screen. Over dark
-                sections it uses the knockout artwork (strapline in white), over
-                light ones the original. */}
-            <Logo
-              priority
-              tone={isLight ? 'light' : 'dark'}
-              markClassName="h-14 w-auto sm:h-20"
-            />
+            {/* Mobile stays at h-14: at h-[4.5rem] the lockup is ~285px wide, which
+                leaves no room for the hamburger on a 360px screen. */}
+            <Logo priority tone="light" markClassName="h-14 w-auto sm:h-[4.5rem]" />
           </AppLink>
 
-          <ul className="hidden items-center gap-8 lg:flex xl:gap-10">
+          <ul className="hidden items-center gap-7 lg:flex xl:gap-9">
             {NAV_LINKS.map((link) => {
               const isActive = isSamePage(link.to, location.pathname);
 
@@ -98,7 +84,7 @@ export default function Navbar() {
                     link={link}
                     isActive={isActive}
                     location={location}
-                    isLight={isLight}
+                    isLight
                   />
                 );
               }
@@ -109,23 +95,11 @@ export default function Navbar() {
                     to={link.to}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'group relative block py-4 text-base font-medium transition-colors duration-300',
-                      isLight
-                        ? cn('hover:text-gold-700', isActive ? 'text-gold-700' : 'text-night')
-                        : 'text-white',
+                      'block py-6 font-display text-[0.875rem] font-medium uppercase tracking-[0.06em] transition-colors duration-300 hover:text-gold-700',
+                      isActive ? 'text-gold-700' : 'text-night',
                     )}
                   >
                     {link.label}
-                    <span
-                      className={cn(
-                        'absolute inset-x-0 bottom-2 h-0.5 transition-all duration-300',
-                        isLight ? 'bg-gold-500' : 'bg-white',
-                        isActive
-                          ? 'translate-y-0 opacity-100'
-                          : 'translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100',
-                      )}
-                      aria-hidden="true"
-                    />
                   </AppLink>
                 </li>
               );
@@ -142,10 +116,7 @@ export default function Navbar() {
               aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
-              className={cn(
-                '-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm transition-colors duration-300 lg:hidden',
-                isLight ? 'text-night hover:text-gold-700' : 'text-white',
-              )}
+              className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm text-night transition-colors duration-300 hover:text-gold-700 lg:hidden"
             >
               <span className="flex w-6 flex-col gap-y-1.5" aria-hidden="true">
                 <span

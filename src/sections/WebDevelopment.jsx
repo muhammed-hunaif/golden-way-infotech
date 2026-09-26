@@ -8,7 +8,7 @@ import TrackArrows from '@/components/common/TrackArrows';
 /**
  * Website Development & Maintenance — the profile's six-stage engagement flow.
  *
- * Six cards in the same dress as the Global Presence hubs, on a horizontal
+ * Six dark cards on a horizontal
  * track like the Emerging Technologies row: three in view on desktop and the
  * arrows step through the rest. A sequence read left to right suits a track
  * better than a grid — the arrows walk the visitor through the stages in the
@@ -34,8 +34,6 @@ export default function WebDevelopment() {
 
         <div data-reveal>
           <TrackArrows
-            index={index}
-            total={WEB_PROCESS_STEPS.length}
             canScroll={canScroll}
             onStep={scrollByCards}
             noun="stage"
@@ -99,7 +97,7 @@ export default function WebDevelopment() {
                 </span>
               </div>
 
-              <h3 className="mt-6 font-display text-[1.375rem] font-normal leading-snug text-white">
+              <h3 className="mt-6 font-display text-[1.375rem] font-semibold leading-snug text-white">
                 {/* The visible number is decorative, so the order is restated here
                   for anyone listening rather than looking. */}
                 <span className="sr-only">{`Stage ${step.step}: `}</span>

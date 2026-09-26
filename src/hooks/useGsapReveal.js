@@ -65,7 +65,7 @@ export function useGsapReveal({
 
     // Web fonts change every heading's height as they swap in, which moves every
     // trigger below them. Without this the start positions are measured against
-    // the fallback font and drift once Plus Jakarta Sans lands.
+    // the fallback font and drift once Manrope lands.
     let cancelled = false;
     document.fonts?.ready.then(() => {
       if (!cancelled) ScrollTrigger.refresh();

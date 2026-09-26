@@ -27,18 +27,12 @@ function Arrow({ direction, onClick, disabled, label }) {
 }
 
 /**
- * Counter and previous/next arrows for a track from `useScrollTrack`, for
- * dark sections. `total` is the number of cards; `noun` names one of them
- * for the arrows' accessible labels.
+ * Previous/next arrows for a track from `useScrollTrack`, for dark sections.
+ * `noun` names one card for the arrows' accessible labels.
  */
-export default function TrackArrows({ index, total, canScroll, onStep, noun = 'item' }) {
+export default function TrackArrows({ canScroll, onStep, noun = 'item' }) {
   return (
-    <div className="flex shrink-0 items-center gap-4">
-      <p className="font-caps text-[0.75rem] tabular-nums tracking-[0.14em] text-white/50">
-        <span className="text-white">{String(index + 1).padStart(2, '0')}</span>
-        {' / '}
-        {String(total).padStart(2, '0')}
-      </p>
+    <div className="flex shrink-0 items-center">
       <div className="flex gap-2">
         <Arrow
           direction="previous"

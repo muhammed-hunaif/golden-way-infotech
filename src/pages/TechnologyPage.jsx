@@ -1,4 +1,5 @@
 import PageBanner from '@/components/layout/PageBanner';
+import technologyBanner from '@/assets/technology/technology-banner.jpg';
 import TechnologyStack from '@/sections/TechnologyStack';
 import Approach from '@/sections/Approach';
 import CTA from '@/sections/CTA';
@@ -16,6 +17,8 @@ export default function TechnologyPage() {
       <PageBanner
         eyebrow="Technology"
         watermark="Technology"
+        image={technologyBanner}
+        overlay="strong"
         title={
           <>
             The stack behind the work, and the

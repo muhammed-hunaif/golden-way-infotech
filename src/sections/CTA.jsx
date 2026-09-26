@@ -1,43 +1,85 @@
+import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/config/site';
+import { ROUTES } from '@/config/navigation';
 import Section from '@/components/common/Section';
+import Button from '@/components/common/Button';
 
-/** Closing call to action, immediately above the footer. */
-export default function CTA() {
+/**
+ * Closing call to action, immediately above the footer.
+ *
+ * A full-width band in the brand gold, after the reference theme's closing
+ * banner: a small label, one large centred statement, and a single pill
+ * button to the contact page. Faint curved lines give the flat colour some
+ * texture without competing with the type.
+ *
+ * `action={false}` drops the button — on the Contact page it would only link
+ * back to the page the visitor is already on.
+ */
+export default function CTA({ action = true }) {
   return (
-    <Section id="cta" tone="night" ariaLabel="Get in touch" fullHeight={false}>
-      {/* Several pages end on a dark section, so the change of ground is not
-          always there to mark where the closing statement begins. The rule is. */}
-      <div className="hairline absolute inset-x-0 top-0" aria-hidden="true" />
-
-      {/* One soft gold glow behind the action column, replacing the 64px grid
-          that used to cover the whole section. A ruled background under a closing
-          statement adds texture the statement does not need. */}
+    <Section id="cta" tone="gold" ariaLabel="Get in touch" fullHeight={false}>
+      {/* A soft sheen from the top-left, so the gold reads as a surface
+          rather than a flat fill. */}
       <div
-        className="pointer-events-none absolute -right-40 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full opacity-70 blur-3xl"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background: 'radial-gradient(circle, rgba(184,134,45,0.16) 0%, rgba(17,17,17,0) 70%)',
+          background:
+            'linear-gradient(120deg, rgba(212,175,55,0.9) 0%, rgba(184,134,45,0) 55%, rgba(138,100,28,0.55) 100%)',
         }}
         aria-hidden="true"
       />
 
-      {/* A statement only. No button and no number: the navbar carries
-          the Contact link at every scroll position and the Contact section directly
-          above holds every way to reach the office, so this closes the page
-          rather than asking again. */}
-      <div className="relative max-w-3xl">
-        <p className="eyebrow text-gold-400" data-reveal>
+      {/* Decorative curves, stretched to the band. */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        viewBox="0 0 1440 520"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden="true"
+      >
+        <g stroke="white" strokeOpacity="0.22" strokeWidth="1.2">
+          <path d="M-40 140C220 60 420 200 560 520" />
+          <path d="M360 -20C300 160 420 360 700 540" />
+          <path d="M-60 360C240 300 520 420 640 560" />
+          <path d="M980 -40C1060 120 1260 170 1500 110" />
+          <path d="M1080 540C1120 360 1280 260 1500 300" />
+          <path d="M760 -30C860 80 960 120 1180 60" />
+        </g>
+      </svg>
+
+      <div className="relative mx-auto max-w-4xl py-6 text-center md:py-10">
+        <p className="font-caps text-xs font-bold uppercase tracking-[0.2em] text-night/70" data-reveal>
           {SITE.tagline}
         </p>
 
-        <h2 className="mt-7 text-display-sm text-white md:text-display-md" data-reveal>
-          Technology delivery and practical learning,
-          <span className="text-gradient-gold"> under one organization.</span>
+        <h2
+          className="mx-auto mt-6 max-w-3xl text-display-md text-night md:text-display-lg"
+          data-reveal
+        >
+          Technology delivery and practical learning, under one organization.
         </h2>
 
-        <p className="mt-7 max-w-xl text-[0.9375rem] leading-[1.9] text-white/60" data-reveal>
+        <p
+          className="mx-auto mt-6 max-w-xl text-[0.9375rem] leading-[1.85] text-night/75 md:text-base"
+          data-reveal
+        >
           Whether you are planning a technology initiative or building career-ready skills, the
           Dubai head office and three India hubs are ready to talk.
         </p>
+
+        {action && (
+          <div className="mt-9" data-reveal>
+            <Button
+              to={ROUTES.contact}
+              variant="dark"
+              size="lg"
+              icon={ArrowRight}
+              className="focus-visible:ring-night focus-visible:ring-offset-gold-500"
+            >
+              Let&rsquo;s Connect
+            </Button>
+          </div>
+        )}
       </div>
     </Section>
   );

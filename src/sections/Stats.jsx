@@ -1,27 +1,28 @@
 import { STATS } from '@/data/stats';
 import StatCard from '@/components/cards/StatCard';
 
-/** "Golden Way Infotech — By The Numbers". */
+/**
+ * "Golden Way Infotech — By The Numbers".
+ *
+ * A light strip of four large figures with a short label under each, after
+ * the reference theme's figures band. It sits directly under the dark hero,
+ * so the change to a light ground marks where the page proper begins.
+ */
 export default function Stats() {
   return (
-    <section id="stats" data-nav-tone="dark" className="relative overflow-hidden bg-night" aria-label="Company figures">
-      <div className="hairline" aria-hidden="true" />
-
-      <div className="container py-12 md:py-16">
-        <p className="mx-auto max-w-2xl text-center text-[0.9375rem] leading-[1.85] text-white/55">
-          Founded in Dubai in 2012, Golden Way Infotech has grown across four offices, 30+
-          countries, and 2,500+ professionals: fourteen years of technology delivery and training
-          built on genuine, global reach.
-        </p>
-
-        <div className="mt-12 grid grid-cols-2 gap-y-4 border-gold-500/15 lg:grid-cols-4 lg:[&>*:not(:first-child)]:border-l lg:[&>*:not(:first-child)]:border-gold-500/15">
+    <section
+      id="stats"
+      data-nav-tone="light"
+      className="relative overflow-hidden bg-cream"
+      aria-label="Company figures"
+    >
+      <div className="container py-12 md:py-14">
+        <div className="grid grid-cols-2 gap-y-8 lg:grid-cols-4 lg:[&>*:not(:first-child)]:border-l lg:[&>*:not(:first-child)]:border-black/[0.08]">
           {STATS.map((stat, index) => (
             <StatCard key={stat.id} stat={stat} index={index} />
           ))}
         </div>
       </div>
-
-      <div className="hairline" aria-hidden="true" />
     </section>
   );
 }

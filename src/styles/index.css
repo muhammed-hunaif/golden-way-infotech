@@ -7,8 +7,8 @@
     --color-gold: #b8862d;
     --color-gold-highlight: #d4af37;
     --color-gold-dark: #8a641c;
-    /* Drives `scroll-padding-top`, so it must track the real bar: `py-2` top and
-       bottom (1rem) plus the `sm:h-20` logo (5rem). Update this whenever the bar
+    /* Drives `scroll-padding-top`, so it must track the real bar (96px measured): `py-2` top and
+       bottom (1rem) plus the `sm:h-[4.5rem]` logo. Update this whenever the bar
        padding or logo size in `Navbar.jsx` changes, or anchored sections land
        under it. `scroll-mt-*` on <Section> carries the same figure. */
     --nav-height: 6rem;
@@ -36,10 +36,10 @@
   h4,
   h5,
   h6 {
-    /* Semibold — one heading weight for the whole site, matching the
-       Gilroy-style bold headings. This is the single lever: change it here and
-       every heading follows, unless a component sets its own weight. */
-    @apply font-display font-semibold text-night;
+    /* Bold — the Gilroy-style corporate heading. This is the single lever:
+       change it here and every heading follows. Card-level h3s set
+       `font-semibold` themselves so they sit a step below section headings. */
+    @apply font-display font-bold text-night;
     text-wrap: balance;
   }
 
@@ -58,8 +58,7 @@
      keep the white offset above. */
   .bg-night :focus-visible,
   .bg-charcoal :focus-visible,
-  .bg-night-gradient :focus-visible,
-  .site-header :focus-visible {
+  .bg-night-gradient :focus-visible {
     @apply ring-offset-night;
   }
 
@@ -98,12 +97,10 @@
     @apply py-10 md:py-14 lg:py-16;
   }
 
-  /* Section eyebrow. Display italic in sentence case, not tracked uppercase:
-     the eyebrow is gold, and gold on this site is set in the display italic —
-     the same rule `.text-gradient-gold` and `.display-accent` follow. Sized
-     close to body copy so it reads as a spoken label rather than a system tag. */
+  /* Section eyebrow: small tracked uppercase in gold. Manrope has no italic,
+     so the label is set apart by case and spacing. */
   .eyebrow {
-    @apply font-display text-[0.9375rem] font-normal italic tracking-normal text-gold-600;
+    @apply inline-block font-caps text-xs font-bold uppercase tracking-[0.2em] text-gold-600;
   }
 
   /* Smaller tracked label, same typographic voice as .eyebrow. */
@@ -111,12 +108,11 @@
     @apply font-caps text-[0.625rem] font-semibold uppercase tracking-[0.18em];
   }
 
-  /* Display italic at 400 — the site's one emphasis. Weight stays at 400 to
-     match every other heading: the emphasis is the change of form, not of colour
-     or thickness, which is why it can sit inside a heading without breaking it.
-     Use it on a phrase, never on a whole block of running text. */
+  /* Display light — the site's one emphasis. Next to a bold heading the drop
+     to 300 does the work italic used to (Manrope has no italic). Use it on a
+     phrase, a numeral or a pull quote, never on a whole block of running text. */
   .display-accent {
-    @apply font-display font-normal italic;
+    @apply font-display font-light not-italic;
   }
 
   .hairline {
@@ -145,11 +141,10 @@
   }
 
   /* The gold emphasis. Used on the closing phrase of a section heading and on
-     the stat numbers — never on body copy — so it carries the accent italic with
-     it: gold and italic are one gesture on this site, not two that have to be
-     remembered separately. Weight stays 400, matching every other heading. */
+     the stat numbers — never on body copy. It inherits the heading's weight so
+     the gold phrase reads as part of the heading rather than a separate style. */
   .text-gradient-gold {
-    @apply bg-gold-gradient bg-clip-text font-display font-normal italic text-transparent;
+    @apply bg-gold-gradient bg-clip-text font-display not-italic text-transparent;
   }
 }
 

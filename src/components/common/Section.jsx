@@ -9,6 +9,8 @@ const TONES = {
   white: 'bg-white text-ink',
   night: 'bg-night-gradient text-white',
   charcoal: 'bg-charcoal text-white',
+  // The brand band: a solid gold ground with dark type, for the closing CTA.
+  gold: 'bg-gold-500 text-night',
 };
 
 /**

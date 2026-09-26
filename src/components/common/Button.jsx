@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn';
 import AppLink from '@/components/common/AppLink';
 
 const BASE =
-  'group inline-flex items-center justify-center gap-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-400 ease-premium disabled:cursor-not-allowed disabled:opacity-55';
+  'group inline-flex items-center justify-center gap-3 rounded-full font-display text-sm font-semibold tracking-wide transition-all duration-400 ease-premium disabled:cursor-not-allowed disabled:opacity-55';
 
 const VARIANTS = {
   /** Filled gold — the single strongest call to action on a screen. */

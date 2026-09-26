@@ -27,11 +27,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Manrope and Jost are self-hosted (src/styles/fonts.css). Preload the
+         body (Manrope 400) and heading (Jost 700) weights for the first paint. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/manrope/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk79FO_F.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jost/92zPtBhPNqw79Ij1E865zBUv7mxEIgVG.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
     />
   </head>
   <body>
