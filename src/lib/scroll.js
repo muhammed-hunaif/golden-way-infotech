@@ -22,7 +22,9 @@ export function scrollToSection(hash, { smooth = true } = {}) {
   if (!target) return false;
 
   const top = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-  window.scrollTo({ top, behavior: smooth && !prefersReduced() ? 'smooth' : 'auto' });
+  // 'instant', not 'auto': `html` has `scroll-behavior: smooth`, and 'auto' defers
+  // to it — so a page-change jump would still glide.
+  window.scrollTo({ top, behavior: smooth && !prefersReduced() ? 'smooth' : 'instant' });
 
   // Keep focus in sync so keyboard and screen-reader users follow along. The URL
   // is owned by the router now, so it is not touched here.
@@ -34,5 +36,5 @@ export function scrollToSection(hash, { smooth = true } = {}) {
 /** Sends the visitor to the top of a freshly mounted route. */
 export function scrollToTop() {
   if (typeof window === 'undefined') return;
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
