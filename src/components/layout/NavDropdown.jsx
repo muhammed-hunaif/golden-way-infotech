@@ -89,7 +89,7 @@ export default function NavDropdown({ link, isActive, location, isLight }) {
         aria-haspopup="true"
         onClick={() => setIsOpen((open) => !open)}
         className={cn(
-          'flex items-center gap-1.5 py-6 font-display text-[0.875rem] font-medium uppercase tracking-[0.06em] transition-colors duration-300',
+          'flex items-center gap-1.5 py-6 font-display text-[0.875rem] font-medium uppercase leading-relaxed tracking-[0.06em] transition-colors duration-300',
           isLight
             ? cn('hover:text-gold-700', isActive || isOpen ? 'text-gold-700' : 'text-night')
             : 'text-white',
@@ -133,11 +133,7 @@ export default function NavDropdown({ link, isActive, location, isLight }) {
             <p className="font-display text-[1.75rem] font-bold leading-tight text-white">
               {link.label}
             </p>
-            {link.intro && (
-              <p className="mt-4 max-w-sm text-[0.9375rem] leading-[1.8] text-white/70">
-                {link.intro}
-              </p>
-            )}
+            {link.intro && <p className="mt-4 max-w-sm text-white/70">{link.intro}</p>}
             <AppLink
               to={link.to}
               onClick={() => setIsOpen(false)}

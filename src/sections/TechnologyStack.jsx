@@ -53,7 +53,7 @@ export default function TechnologyStack() {
               ))}
             </ul>
 
-            <p className="mt-7 text-[0.875rem] leading-[1.8] text-ink-soft">{group.description}</p>
+            <p className="mt-7 text-ink-soft">{group.description}</p>
           </article>
         ))}
       </div>

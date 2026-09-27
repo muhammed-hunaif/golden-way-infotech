@@ -34,11 +34,7 @@ export default function EmergingTechnologies() {
         {/* Arrows beside the title. On phones they drop under
             it; on desktop they sit on the title's baseline at the right. */}
         <div data-reveal>
-          <TrackArrows
-            canScroll={canScroll}
-            onStep={scrollByCards}
-            noun="technology"
-          />
+          <TrackArrows canScroll={canScroll} onStep={scrollByCards} noun="technology" />
         </div>
       </div>
 
@@ -82,9 +78,7 @@ export default function EmergingTechnologies() {
               <p className="mt-2 font-caps text-[0.75rem] font-medium uppercase tracking-[0.12em] text-gold-500/80">
                 {tech.keyPoint}
               </p>
-              <p className="mt-4 text-[0.8125rem] leading-[1.8] text-white/55">
-                {tech.description}
-              </p>
+              <p className="mt-4 text-white/55">{tech.description}</p>
             </div>
           </li>
         ))}

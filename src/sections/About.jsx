@@ -53,7 +53,11 @@ export default function About({ cta = false, tone = 'night' }) {
     <Section id="about" tone={tone} ariaLabel="About Golden Way Infotech">
       <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         {/* Decorative photograph: the copy beside it carries the meaning. */}
-        <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none" aria-hidden="true" data-reveal>
+        <div
+          className="relative mx-auto w-full max-w-[26rem] lg:max-w-none"
+          aria-hidden="true"
+          data-reveal
+        >
           <div className="aspect-square overflow-hidden rounded-full">
             <img
               src={aboutImage}
@@ -87,7 +91,9 @@ export default function About({ cta = false, tone = 'night' }) {
           <ul className="mt-10 grid gap-x-10 gap-y-7 sm:grid-cols-2">
             {HIGHLIGHTS.map((item) => (
               <li key={item.id} className="flex gap-4" data-reveal>
-                <span className={`mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold-500/40 ${isDark ? 'text-gold-400' : 'bg-white text-gold-600'}`}>
+                <span
+                  className={`mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold-500/40 ${isDark ? 'text-gold-400' : 'bg-white text-gold-600'}`}
+                >
                   <item.icon
                     className="h-[1.125rem] w-[1.125rem]"
                     strokeWidth={1.6}
@@ -95,10 +101,12 @@ export default function About({ cta = false, tone = 'night' }) {
                   />
                 </span>
                 <div>
-                  <h3 className={`font-display text-[1.0625rem] font-semibold ${isDark ? 'text-white' : 'text-night'}`}>
+                  <h3
+                    className={`font-display text-[1.0625rem] font-semibold ${isDark ? 'text-white' : 'text-night'}`}
+                  >
                     {item.title}
                   </h3>
-                  <p className={`mt-1.5 text-[0.875rem] leading-[1.75] ${isDark ? 'text-white/60' : 'text-ink-soft'}`}>
+                  <p className={`mt-1.5 ${isDark ? 'text-white/60' : 'text-ink-soft'}`}>
                     {item.detail}
                   </p>
                 </div>

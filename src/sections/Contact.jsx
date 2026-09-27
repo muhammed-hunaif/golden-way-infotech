@@ -105,7 +105,7 @@ export default function Contact() {
             <h3 className="mt-4 font-display text-[1.5rem] font-bold leading-snug text-night md:text-[1.75rem]">
               Tell us what you are working on.
             </h3>
-            <p className="mt-4 text-[0.875rem] leading-[1.8] text-ink-soft">
+            <p className="mt-4 text-ink-soft">
               Business, training, or partnership. Choose the service that fits and the right team
               will pick it up.
             </p>

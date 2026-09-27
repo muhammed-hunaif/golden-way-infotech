@@ -34,7 +34,7 @@ export default function Training() {
               <GraduationCap className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
             </span>
 
-            <p className="mt-6 text-[0.9375rem] leading-[1.85] text-ink-soft">
+            <p className="mt-6 text-ink-soft">
               This dual structure allows the organization to serve businesses seeking practical
               technology implementation while equipping individuals with career-ready skills.
               Trainers and developers bring active, current industry backgrounds, keeping technical
@@ -90,9 +90,7 @@ export default function Training() {
               <h3 className="mt-6 font-display text-[1.25rem] font-semibold leading-snug text-night">
                 {pillar.title}
               </h3>
-              <p className="mt-3 text-[0.875rem] leading-[1.8] text-ink-soft">
-                {pillar.description}
-              </p>
+              <p className="mt-3 text-ink-soft">{pillar.description}</p>
             </li>
           ))}
         </ul>

@@ -94,7 +94,7 @@ export default function Services({ preview = false }) {
                 <Button to={ROUTES.services} variant="dark" size="lg">
                   View All {SERVICES.length} Services
                 </Button>
-                <p className="mt-4 text-[0.875rem] text-ink-muted">
+                <p className="mt-4 text-ink-muted">
                   Filter by software, database, cloud, AI, design and marketing.
                 </p>
               </div>
@@ -158,10 +158,7 @@ export default function Services({ preview = false }) {
               label="Service pages"
             />
 
-            <p
-              className="mt-10 max-w-prose text-[0.875rem] leading-[1.8] text-ink-muted"
-              data-reveal
-            >
+            <p className="mt-10 max-w-prose text-ink-muted" data-reveal>
               Across each area, work is grounded in applied project experience rather than
               theoretical service descriptions alone. Select any service to read its full capability
               description.

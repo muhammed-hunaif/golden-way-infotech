@@ -74,7 +74,7 @@ export default function EnquiryForm() {
         <h3 className="mt-7 font-display text-2xl font-bold text-night">
           Thank you, {values.name.trim().split(' ')[0]}.
         </h3>
-        <p className="mt-4 max-w-md text-[0.9375rem] leading-[1.85] text-ink-soft">
+        <p className="mt-4 max-w-md text-ink-soft">
           Your enquiry details have been captured in this form. This website is a frontend
           demonstration, so nothing has been transmitted. Please use the head office telephone
           number listed alongside to reach the team directly.
@@ -173,7 +173,7 @@ export default function EnquiryForm() {
             <option value="General Enquiry">General Enquiry</option>
           </select>
           {errors.service && (
-            <p id="enquiry-service-error" className="mt-2 text-[0.8125rem] text-red-700">
+            <p id="enquiry-service-error" className="mt-2 text-red-700">
               {errors.service}
             </p>
           )}
@@ -203,7 +203,7 @@ export default function EnquiryForm() {
             )}
           />
           {errors.message && (
-            <p id="enquiry-message-error" className="mt-2 text-[0.8125rem] text-red-700">
+            <p id="enquiry-message-error" className="mt-2 text-red-700">
               {errors.message}
             </p>
           )}
@@ -211,7 +211,7 @@ export default function EnquiryForm() {
       </div>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[0.75rem] leading-relaxed text-ink-muted">
+        <p className="text-ink-muted">
           Fields marked <span className="text-gold-600">*</span> are required.
         </p>
 
@@ -246,7 +246,7 @@ function Field({ id, name, label, type = 'text', required, value, error, onChang
         {...props}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-2 text-[0.8125rem] text-red-700">
+        <p id={`${id}-error`} className="mt-2 text-red-700">
           {error}
         </p>
       )}

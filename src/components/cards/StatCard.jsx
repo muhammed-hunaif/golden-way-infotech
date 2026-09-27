@@ -24,7 +24,7 @@ function StatCard({ stat, index }) {
         </span>
       </p>
 
-      <p className="mt-3 text-[0.9375rem] text-ink-soft">{label}</p>
+      <p className="mt-3 text-ink-soft">{label}</p>
     </div>
   );
 }

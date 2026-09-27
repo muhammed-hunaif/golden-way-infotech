@@ -43,9 +43,9 @@ function LocationCard({ location }) {
       <h3 className="mt-6 font-display text-[2.25rem] font-bold leading-none text-white md:text-[2.5rem]">
         {city}
       </h3>
-      <p className="mt-2 text-[0.875rem] text-white/45">{market}</p>
+      <p className="mt-2 text-white/45">{market}</p>
 
-      <p className="mt-4 flex items-center gap-2 text-[0.8125rem] text-white/70">
+      <p className="mt-4 flex items-center gap-2 text-white/70">
         <MapPin
           className="h-3.5 w-3.5 shrink-0 text-gold-500"
           strokeWidth={1.5}
@@ -55,8 +55,8 @@ function LocationCard({ location }) {
       </p>
 
       <div className="mt-6 border-t border-white/10 pt-5">
-        <p className="text-[0.875rem] font-medium leading-snug text-gold-300">{role}</p>
-        <p className="mt-3 text-[0.8125rem] leading-[1.8] text-white/55">{contribution}</p>
+        <p className="font-medium text-gold-300">{role}</p>
+        <p className="mt-3 text-white/55">{contribution}</p>
       </div>
     </li>
   );

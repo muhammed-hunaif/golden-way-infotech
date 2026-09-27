@@ -23,7 +23,7 @@ export default function NotFound() {
           <span className="text-gradient-gold"> is not here.</span>
         </h1>
 
-        <p className="mt-6 text-[0.9375rem] leading-[1.9] text-white/60">
+        <p className="mt-6 text-white/60">
           The address may have changed, or it may never have existed. Everything on the site is one
           click from the home page.
         </p>

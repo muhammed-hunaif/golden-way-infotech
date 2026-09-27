@@ -48,7 +48,10 @@ export default function CTA({ action = true }) {
       </svg>
 
       <div className="relative mx-auto max-w-4xl py-6 text-center md:py-10">
-        <p className="font-caps text-xs font-bold uppercase tracking-[0.2em] text-night/70" data-reveal>
+        <p
+          className="font-caps text-xs font-bold uppercase tracking-[0.2em] text-night/70"
+          data-reveal
+        >
           {SITE.tagline}
         </p>
 
@@ -59,10 +62,7 @@ export default function CTA({ action = true }) {
           Technology delivery and practical learning, under one organization.
         </h2>
 
-        <p
-          className="mx-auto mt-6 max-w-xl text-[0.9375rem] leading-[1.85] text-night/75 md:text-base"
-          data-reveal
-        >
+        <p className="mx-auto mt-6 max-w-xl text-night/75" data-reveal>
           Whether you are planning a technology initiative or building career-ready skills, the
           Dubai head office and three India hubs are ready to talk.
         </p>

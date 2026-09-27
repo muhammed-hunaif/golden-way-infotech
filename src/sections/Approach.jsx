@@ -30,9 +30,7 @@ function Step({ step }) {
           <span className="sr-only">{`Step ${step.number}: `}</span>
           {step.title}
         </h3>
-        <p className="mt-3 max-w-prose text-[0.9375rem] leading-[1.85] text-white/70">
-          {step.description}
-        </p>
+        <p className="mt-3 max-w-prose text-white/70">{step.description}</p>
       </div>
     </li>
   );

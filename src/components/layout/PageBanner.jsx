@@ -66,10 +66,7 @@ export default function PageBanner({
 
           {/* Large screens: dark behind the copy on the left, easing off so the
               right of the photo stays visible. */}
-          <div
-            className="absolute inset-0 hidden lg:block"
-            style={{ background: shade.desktop }}
-          />
+          <div className="absolute inset-0 hidden lg:block" style={{ background: shade.desktop }} />
         </div>
       )}
 
@@ -101,14 +98,10 @@ export default function PageBanner({
 
         <h1 className="mt-6 max-w-3xl text-display-lg font-bold text-white">{title}</h1>
 
-        {description && (
-          <p className="mt-7 max-w-2xl text-[0.9375rem] leading-[1.9] text-white/65 md:text-base">
-            {description}
-          </p>
-        )}
+        {description && <p className="mt-7 max-w-2xl text-white/65">{description}</p>}
 
         <nav className="mt-10" aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 font-caps text-[0.6875rem] uppercase tracking-[0.16em] text-white/45">
+          <ol className="flex flex-wrap items-center gap-2 font-caps text-[0.6875rem] uppercase tracking-[0.16em] text-white/45 [&>li]:text-[0.6875rem] [&>li]:leading-relaxed">
             <li>
               <AppLink
                 to={ROUTES.home}

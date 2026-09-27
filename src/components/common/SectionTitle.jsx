@@ -39,7 +39,7 @@ export default function SectionTitle({
       {description && (
         <p
           className={cn(
-            'mt-6 max-w-prose text-[0.9375rem] leading-[1.8] md:text-base',
+            'mt-6 max-w-prose',
             isCentered && 'mx-auto',
             isDark ? 'text-white/65' : 'text-ink-soft',
           )}

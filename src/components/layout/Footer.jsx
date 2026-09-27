@@ -43,9 +43,9 @@ export default function Footer() {
               <Logo markClassName="h-16 w-auto sm:h-20" />
             </AppLink>
 
-            <p className="mt-6 max-w-sm text-[1.0625rem] leading-[1.8] text-night">
-              Technology delivery and practical training from one organization, built in Dubai
-              since {SITE.established} and working across 30+ countries.
+            <p className="mt-6 max-w-sm text-night">
+              Technology delivery and practical training from one organization, built in Dubai since{' '}
+              {SITE.established} and working across 30+ countries.
             </p>
 
             {/* Decorative: the statement above already says what it shows.
@@ -103,7 +103,7 @@ export default function Footer() {
                         ? `${location.city} · Head Office`
                         : `${location.city}, ${location.region.replace(', India', '')}`}
                     </AppLink>
-                    <p className="mt-1 flex items-start gap-1.5 text-[0.8125rem] text-ink-muted">
+                    <p className="mt-1 flex items-start gap-1.5 text-ink-muted">
                       <MapPin
                         className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-600"
                         aria-hidden="true"
@@ -122,7 +122,7 @@ export default function Footer() {
           (48px, 20-32px from the corner) so it never covers the text. */}
       <div className="border-t border-black/[0.06]">
         <div className="container flex flex-col items-center justify-between gap-3 pb-24 pt-7 text-center md:flex-row md:py-7 md:pr-24 md:text-left">
-          <p className="text-[0.875rem] text-ink-muted">
+          <p className="text-ink-muted">
             Copyright © {currentYear} {SITE.legalName}. All rights reserved.
           </p>
 

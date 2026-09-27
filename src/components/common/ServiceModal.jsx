@@ -113,11 +113,9 @@ export default function ServiceModal({ service, onClose }) {
         </div>
 
         <div className="px-6 py-7 md:px-9 md:py-9">
-          <p className="text-[0.8125rem] font-semibold text-gold-700">
-            {keyPoint}
-          </p>
+          <p className="font-semibold text-gold-700">{keyPoint}</p>
 
-          <p className="mt-6 text-[0.9375rem] leading-[1.9] text-ink-soft">{description}</p>
+          <p className="mt-6 text-ink-soft">{description}</p>
 
           <div className="mt-9 flex flex-col gap-3 border-t border-black/[0.07] pt-7 sm:flex-row">
             <Button

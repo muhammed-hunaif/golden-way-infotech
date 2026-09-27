@@ -25,7 +25,7 @@ function ReasonItem({ reason }) {
         {title}
       </h3>
 
-      <p className="mt-3 text-[0.9375rem] leading-[1.8] text-ink-soft">{description}</p>
+      <p className="mt-3 text-ink-soft">{description}</p>
     </li>
   );
 }

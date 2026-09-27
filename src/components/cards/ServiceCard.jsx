@@ -29,9 +29,9 @@ function ServiceCard({ service, onSelect }) {
         {name}
       </h3>
 
-      <p className="mt-1.5 text-[0.8125rem] font-medium text-gold-700">{keyPoint}</p>
+      <p className="mt-1.5 font-medium text-gold-700">{keyPoint}</p>
 
-      <p className="mt-4 text-[0.875rem] leading-[1.75] text-ink-soft">{summary}</p>
+      <p className="mt-4 text-ink-soft">{summary}</p>
 
       {/* `mt-auto` pins this to the foot of the card. Summaries differ in
           length, so without it the affordance sits at a different height in

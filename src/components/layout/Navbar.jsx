@@ -95,7 +95,7 @@ export default function Navbar() {
                     to={link.to}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'block py-6 font-display text-[0.875rem] font-medium uppercase tracking-[0.06em] transition-colors duration-300 hover:text-gold-700',
+                      'block py-6 font-display text-[0.875rem] font-medium uppercase leading-relaxed tracking-[0.06em] transition-colors duration-300 hover:text-gold-700',
                       isActive ? 'text-gold-700' : 'text-night',
                     )}
                   >

@@ -33,11 +33,7 @@ export default function WebDevelopment() {
         />
 
         <div data-reveal>
-          <TrackArrows
-            canScroll={canScroll}
-            onStep={scrollByCards}
-            noun="stage"
-          />
+          <TrackArrows canScroll={canScroll} onStep={scrollByCards} noun="stage" />
         </div>
       </div>
 
@@ -105,12 +101,7 @@ export default function WebDevelopment() {
               </h3>
 
               <div className="mt-5 border-t border-white/10 pt-5">
-                <p
-                  className={cn(
-                    'text-[0.8125rem] leading-[1.8]',
-                    isFeatured ? 'text-white/75' : 'text-white/55',
-                  )}
-                >
+                <p className={cn(isFeatured ? 'text-white/75' : 'text-white/55')}>
                   {step.description}
                 </p>
               </div>
@@ -122,9 +113,7 @@ export default function WebDevelopment() {
       {/* The closing note sits under a full-width rule rather than inside its own
           outlined box — it is a footnote to the sequence, not a seventh stage. */}
       <div className="mt-16 border-t border-white/10 pt-8" data-reveal>
-        <p className="mx-auto max-w-3xl text-center text-[0.875rem] leading-[1.85] text-white/60">
-          {WEB_PROCESS_NOTE}
-        </p>
+        <p className="mx-auto max-w-3xl text-center text-white/60">{WEB_PROCESS_NOTE}</p>
       </div>
     </Section>
   );
