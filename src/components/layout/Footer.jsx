@@ -1,4 +1,3 @@
-import { MapPin } from 'lucide-react';
 import { SITE } from '@/config/site';
 import { LOCATIONS } from '@/data/locations';
 import { FOOTER_COLUMNS, ROUTES } from '@/config/navigation';
@@ -13,6 +12,8 @@ const currentYear = new Date().getFullYear();
  * in from the left, and a point on the right.
  */
 const CHEVRON_CLIP = 'polygon(0 0, 62% 22%, 100% 58%, 62% 100%, 0 100%, 34% 58%)';
+
+const HEADING_CLASS = 'font-display text-[1.25rem] font-bold text-night md:text-[1.375rem]';
 
 const LINK_CLASS =
   'text-[0.875rem] text-ink-soft transition-colors duration-300 ease-premium hover:text-gold-700';
@@ -51,7 +52,7 @@ export default function Footer() {
             {/* Decorative: the statement above already says what it shows.
                 Kept short so the brand column ends level with the links. */}
             <div
-              className="mt-8 hidden aspect-[5/4] w-full max-w-[16rem] overflow-hidden lg:block"
+              className="mt-6 hidden aspect-[5/4] w-full max-w-[12rem] overflow-hidden lg:block"
               style={{ clipPath: CHEVRON_CLIP }}
               aria-hidden="true"
             >
@@ -65,37 +66,29 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            {/* The four link groups side by side, so no grid cell is left
-                empty. Two per row on small screens. */}
-            <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
-              {FOOTER_COLUMNS.map((column) => (
-                <nav key={column.title} aria-label={column.title}>
-                  <h2 className="font-display text-[1.25rem] font-bold text-night md:text-[1.375rem]">
-                    {column.title}
-                  </h2>
+          {/* The four link groups plus Locations side by side, one row on
+              desktop, three per row on tablets and two on phones. */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-6">
+            {FOOTER_COLUMNS.map((column) => (
+              <nav key={column.title} aria-label={column.title}>
+                <h2 className={HEADING_CLASS}>{column.title}</h2>
 
-                  <ul className="mt-4 space-y-3">
-                    {column.links.map((link) => (
-                      <li key={link.label}>
-                        <AppLink to={link.to} className={LINK_CLASS}>
-                          {link.label}
-                        </AppLink>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              ))}
-            </div>
+                <ul className="mt-4 space-y-3">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <AppLink to={link.to} className={LINK_CLASS}>
+                        {link.label}
+                      </AppLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
 
-            {/* Locations as a full-width strip beneath the links: each hub
-                with the landmark it sits near, four across on desktop. */}
-            <nav aria-label="Locations" className="mt-10 border-t border-black/[0.06] pt-8">
-              <h2 className="font-display text-[1.25rem] font-bold text-night md:text-[1.375rem]">
-                Locations
-              </h2>
+            <nav aria-label="Locations">
+              <h2 className={HEADING_CLASS}>Locations</h2>
 
-              <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-5 lg:grid-cols-4">
+              <ul className="mt-4 space-y-3">
                 {LOCATIONS.map((location) => (
                   <li key={location.id}>
                     <AppLink to={ROUTES.contact} className={LINK_CLASS}>
@@ -103,13 +96,6 @@ export default function Footer() {
                         ? `${location.city} · Head Office`
                         : `${location.city}, ${location.region.replace(', India', '')}`}
                     </AppLink>
-                    <p className="mt-1 flex items-start gap-1.5 text-ink-muted">
-                      <MapPin
-                        className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-600"
-                        aria-hidden="true"
-                      />
-                      {location.address}
-                    </p>
                   </li>
                 ))}
               </ul>

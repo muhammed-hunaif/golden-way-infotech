@@ -17,6 +17,8 @@ const VARIANTS = {
     'border border-night/15 text-night hover:border-gold-500 hover:bg-gold-50 hover:text-gold-700',
   /** Solid dark, used on cream sections. */
   dark: 'bg-night text-white hover:bg-charcoal-light',
+  /** Solid white, used on the gold band. */
+  light: 'bg-white text-gold-700 shadow-subtle hover:shadow-lift hover:text-gold-800',
   /** Text-only, for tertiary actions. */
   ghost: 'text-night hover:text-gold-600',
 };

@@ -49,20 +49,20 @@ export default function CTA({ action = true }) {
 
       <div className="relative mx-auto max-w-4xl py-6 text-center md:py-10">
         <p
-          className="font-caps text-xs font-bold uppercase tracking-[0.2em] text-night/70"
+          className="font-caps text-xs font-bold uppercase tracking-[0.2em] text-white/85"
           data-reveal
         >
           {SITE.tagline}
         </p>
 
         <h2
-          className="mx-auto mt-6 max-w-3xl text-display-md text-night md:text-display-lg"
+          className="mx-auto mt-6 max-w-3xl text-display-md text-white md:text-display-lg"
           data-reveal
         >
           Technology delivery and practical learning, under one organization.
         </h2>
 
-        <p className="mx-auto mt-6 max-w-xl text-night/75" data-reveal>
+        <p className="mx-auto mt-6 max-w-xl text-white/90" data-reveal>
           Whether you are planning a technology initiative or building career-ready skills, the
           Dubai head office and three India hubs are ready to talk.
         </p>
@@ -71,10 +71,10 @@ export default function CTA({ action = true }) {
           <div className="mt-9" data-reveal>
             <Button
               to={ROUTES.contact}
-              variant="dark"
+              variant="light"
               size="lg"
               icon={ArrowRight}
-              className="focus-visible:ring-night focus-visible:ring-offset-gold-500"
+              className="focus-visible:ring-white focus-visible:ring-offset-gold-500"
             >
               Let&rsquo;s Connect
             </Button>
