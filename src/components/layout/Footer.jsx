@@ -92,9 +92,14 @@ export default function Footer() {
                 {LOCATIONS.map((location) => (
                   <li key={location.id}>
                     <AppLink to={ROUTES.contact} className={LINK_CLASS}>
-                      {location.isHeadOffice
-                        ? `${location.city} · Head Office`
-                        : `${location.city}, ${location.region.replace(', India', '')}`}
+                      <span className="block">
+                        {location.isHeadOffice
+                          ? `${location.city} · Head Office`
+                          : `${location.city}, ${location.region.replace(', India', '')}`}
+                      </span>
+                      <span className="mt-0.5 block text-[0.8125rem] text-ink-muted">
+                        {location.address}
+                      </span>
                     </AppLink>
                   </li>
                 ))}
